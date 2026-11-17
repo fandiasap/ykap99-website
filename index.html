@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kenali Yayasan Keluarga Alumni Paskibra 99 dan cara terhubung dengan komunitas alumni.">
+  <meta name="description" content="Kenali alumni Paskibra 99 lintas angkatan, bertukar pengalaman karier, dan ikut membuka kesempatan bagi generasi berikutnya bersama YKAP 99.">
   <meta name="theme-color" content="#f7f4ef">
   <title>Yayasan Keluarga Alumni Paskibra 99</title>
 
   <!-- Ubah nilai warna di :root untuk menyesuaikan tampilan dengan identitas yayasan. -->
   <style>
     :root {
-      --paper: #f7f4ef;
-      --white: #fffdf9;
-      --ink: #261c1c;
-      --muted: #61514f;
-      --red: #98232d;
-      --line: #ded4ce;
-    }
+  --paper: #F3F7FC;  /* Latar halaman biru pucat */
+  --white: #FFFFFF;  /* Latar kartu */
+  --ink: #151515;    /* Teks utama */
+  --muted: #42536A;  /* Teks sekunder */
+  --red: #2A55A3;    /* Biru tua dari logo */
+  --line: #D9E5F2;   /* Garis pemisah */
+}
 
     * { box-sizing: border-box; }
 
@@ -88,6 +88,12 @@
       font-size: clamp(1rem, 2vw, 1.2rem);
     }
 
+    .hero .hero-name {
+      margin: 0 0 .8rem;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
     .button {
       display: inline-block;
       width: fit-content;
@@ -124,6 +130,7 @@
     }
 
     .section p { max-width: 60ch; color: var(--muted); }
+    .section p + p { margin-top: .85rem; }
 
     .cards {
       display: grid;
@@ -152,6 +159,14 @@
       .split, .cards { grid-template-columns: 1fr; }
       .hero { border-radius: .85rem; }
     }
+
+.hero {
+  box-shadow: inset 0 -4px 0 #2481C6;
+}
+
+.card {
+  border-top: 3px solid #E34B0A;
+}
   </style>
 </head>
 <body id="beranda">
@@ -159,49 +174,61 @@
   <header class="container site-header">
     <a class="wordmark" href="#beranda" aria-label="YKAP 99, beranda">YKAP 99</a>
     <nav aria-label="Navigasi utama">
-      <a href="#tentang">Tentang</a>
-      <a href="#kegiatan">Kegiatan</a>
-      <a href="#kontak">Kontak</a>
+      <a href="#tentang">Cerita Kami</a>
+      <a href="#kegiatan">Manfaat</a>
+      <a href="#cita-cita">Cita-cita</a>
+      <a href="#kontak">Ikut Terlibat</a>
     </nav>
   </header>
 
   <main class="container" id="isi" tabindex="-1">
     <section class="hero" aria-labelledby="judul-utama">
-      <h1 id="judul-utama">Yayasan Keluarga Alumni Paskibra 99</h1>
-      <!-- Coba ubah teks di dalam tag p ini untuk latihan commit dan pull request. -->
-      <p>Ruang bagi alumni Paskibra 99 untuk tetap terhubung dan berkegiatan bersama.</p>
-      <a class="button" href="#kegiatan">Lihat fokus kegiatan</a>
+      <p class="hero-name">Yayasan Keluarga Alumni Paskibra 99</p>
+      <h1 id="judul-utama">Ada potensi besar yang kita bisa wujudkan bersama.</h1>
+      <p>Dan kakak bisa menjadi bagian dari sejarah bagaimana potensi tersebut terwujud. Caranya? Mulai dari ber-networking/berjejaring dengan sesama alumni Paskibra SMAN 99 lintas angkatan, lalu ikut aktif dalam berbagai kegiatan yang berdampak positif bagi kita semua di masa depan.</p>
+      <a class="button" href="#kegiatan">Lihat manfaat untuk alumni</a>
     </section>
 
     <section class="section split" id="tentang">
-      <h2>Tentang yayasan</h2>
-      <p>Yayasan Keluarga Alumni Paskibra 99 mengajak alumni lintas angkatan untuk menjaga silaturahmi, mendukung generasi Paskibra berikutnya, dan berbagi keterampilan dengan masyarakat.</p>
+      <h2>Kekompakan yang kita teruskan</h2>
+      <div>
+        <p>Paskibra SMA 99 dikenal kompak dan disegani sekolah lain. Kita bangga pada prestasinya dan pada kebiasaan saling menjaga yang tumbuh dari latihan, lomba, dan waktu yang kita lewati bersama.</p>
+        <p>Para alumni membawa semangat itu saat mendirikan yayasan pada 2019. Berawal dari satu ekstrakurikuler di SMA, kini kita punya yayasan yang terus menyalurkan beasiswa bagi adik-adik Paskibra 99 dan sesama alumni.</p>
+      </div>
     </section>
 
     <section class="section" id="kegiatan">
-      <h2>Fokus kegiatan</h2>
-      <!-- Isi bagian ini dengan program dan agenda yang sudah siap diumumkan. -->
+      <h2>Manfaat untuk alumni</h2>
       <div class="cards">
         <article class="card">
-          <h3>Silaturahmi alumni</h3>
-          <p>Pertemuan lintas angkatan untuk saling mengenal dan merencanakan kegiatan bersama.</p>
+          <h3>Jejaring lintas angkatan</h3>
+          <p>Banyak alumni sudah membangun karier dan usaha di berbagai bidang. Kenali mereka, bertukar informasi kerja atau proyek, dan temukan rekan untuk berkolaborasi.</p>
         </article>
         <article class="card">
-          <h3>Pendampingan Paskibra</h3>
-          <p>Berbagi pengalaman berorganisasi, kerja sama tim, dan kepemimpinan.</p>
+          <h3>Teman untuk belajar</h3>
+          <p>Sedang memilih jurusan, berganti bidang, atau merintis usaha? Kamu bisa berdiskusi dengan alumni yang pernah melewati tahap serupa dan belajar dari pengalaman mereka.</p>
         </article>
         <article class="card">
-          <h3>Kegiatan masyarakat</h3>
-          <p>Ruang bagi alumni untuk berbagi keterampilan melalui pelatihan dan kegiatan sosial.</p>
+          <h3>Pengalaman dan portofolio</h3>
+          <p>Dengan membantu kegiatan yayasan, kamu bisa mencoba peran baru, melatih keterampilan, dan membangun portofolio sambil mendukung adik-adik dan sesama alumni.</p>
         </article>
       </div>
     </section>
 
-    <section class="section split" id="kontak">
-      <h2>Kontak</h2>
+    <section class="section split" id="cita-cita">
+      <h2>Dampak yang bisa kita bangun bersama</h2>
       <div>
-        <p>Hubungi kami melalui Instagram jika kamu ingin ikut berkegiatan atau membahas kerja sama.</p>
-        <a class="button" href="https://www.instagram.com/yayasan.alumnipaskibra99/">Buka Instagram yayasan</a>
+        <p>Kita bercita-cita membangun lembaga pendidikan dan pelatihan serta memperluas pelayanan sosial. Kita ingin kesempatan yang selama ini dibuka untuk adik-adik Paskibra 99 dan sesama alumni bisa dirasakan juga oleh masyarakat di Jakarta dan berbagai daerah di Indonesia.</p>
+        <p>Setiap angkatan bisa ikut mewujudkannya, misalnya dengan mendampingi adik-adik, berbagi keahlian, atau mempertemukan yayasan dengan mitra di Indonesia dan luar negeri.</p>
+      </div>
+    </section>
+
+    <section class="section split" id="kontak">
+      <h2>Ambil peran yang cocok untukmu</h2>
+      <div>
+        <p>Kamu bisa mulai dengan hadir di kegiatan, berbagi pengalaman, atau membantu sebagai relawan. Kalau siap mengambil tanggung jawab lebih rutin, sampaikan minatmu untuk menjadi pengurus yayasan.</p>
+        <p>Sapa kami dengan menyebutkan angkatanmu dan hal yang ingin kamu pelajari, bagikan, atau bantu.</p>
+        <a class="button" href="https://www.instagram.com/yayasan.alumnipaskibra99/">Sapa YKAP 99 di Instagram</a>
       </div>
     </section>
   </main>
