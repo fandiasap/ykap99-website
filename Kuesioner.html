@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kuesioner alumni · YKAP 99</title>
+  <style>
+    :root { color-scheme: light; font: 16px/1.55 Inter, system-ui, sans-serif; color: #192d43; background: #fff; accent-color: #2a55a3; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 47rem; margin: auto; padding: clamp(.9rem, 4vw, 2.35rem); }
+    h1, h2, p, fieldset { margin: 0; }
+    h1 { font-size: clamp(1.4rem, 4.5vw, 2rem); line-height: 1.15; letter-spacing: -.034em; color: #182f52; }
+    h2 { font-size: 1.2rem; }
+    p { margin: .65rem 0; }
+    .petunjuk, .meta { color: #43596e; }
+    .meta { font-size: .9rem; font-weight: 700; margin: 0 0 .4rem; }
+    .contoh, .pesan:not(:empty) { margin: 0 0 1rem; border-radius: .5rem; padding: .7rem .85rem; color: #693e0c; background: #fff1d9; }
+    .pesan:not(:empty) { margin: 1rem 0; color: #722a1c; background: #fff1ed; }
+    progress { width: 100%; margin: 1rem 0 .1rem; height: .55rem; accent-color: #2a55a3; }
+    fieldset { min-width: 0; border: 0; padding: 0; margin-top: 1.3rem; }
+    legend, .label-kontak { font-weight: 720; color: #152f50; padding: 0; font-size: 1rem; }
+    .pilihan { display: flex; align-items: flex-start; gap: .65rem; border: 1px solid #c5d2e2; border-radius: .55rem; padding: .65rem .75rem; margin-top: .45rem; cursor: pointer; min-height: 2.7rem; }
+    .pilihan:has(input:checked) { border-color: #2a55a3; background: #edf4ff; }
+    .pilihan input { width: 1.1rem; height: 1.1rem; margin: .18rem 0 0; flex: none; }
+    .label-kontak, .sub { display: block; margin-top: .85rem; }
+    input:not([type=checkbox]):not([type=radio]), select, textarea { width: 100%; margin-top: .35rem; border: 1px solid #8399b2; border-radius: .45rem; padding: .68rem; color: #172f50; background: white; font: inherit; }
+    textarea { resize: vertical; min-height: 5rem; }
+    .sub select { max-width: 18rem; display: block; }
+    .sub select, .label-kontak input { font-weight: 400; }
+    .aksi { display: flex; flex-wrap: wrap; gap: .65rem; margin: 1.4rem 0 .3rem; }
+    button { font: inherit; font-weight: 720; color: white; background: #2a55a3; border: 1px solid #2a55a3; border-radius: .5rem; padding: .65rem 1rem; min-height: 2.75rem; cursor: pointer; }
+    button.sekunder { color: #244786; background: white; border-color: #a7bad3; }
+    button:disabled { opacity: .6; cursor: wait; }
+    :focus-visible { outline: 3px solid #235bb1; outline-offset: 2px; }
+    h1:focus { outline: 0; }
+    small { color: #42566e; }
+    [hidden] { display: none !important; }
+    @media (max-width: 25rem) { .aksi { flex-direction: column; } .aksi button { width: 100%; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p id="pratinjau" class="contoh" hidden>Pratinjau untuk panitia. Pertanyaan bisa dicoba di sini. Jawaban hanya bisa dikirim dari formulir yang sudah diaktifkan.</p>
+    <p id="posisi" class="meta"></p>
+    <h1 id="judul" tabindex="-1">Kuesioner alumni Paskibra 99</h1>
+    <p id="petunjuk" class="petunjuk"></p>
+    <progress id="kemajuan" max="6" value="1" aria-label="Kemajuan di bagian ini" hidden></progress>
+    <form id="isi" novalidate>
+      <div id="bidang"></div>
+      <p id="galat" class="pesan" role="alert"></p>
+      <p id="status" role="status"></p>
+      <div id="aksi" class="aksi"></div>
+    </form>
+    <noscript><p>Aktifkan JavaScript untuk mengisi formulir ini.</p></noscript>
+  </main>
+  <script type="application/json" id="skema-survei">
+[
+  {
+    "id": "q1",
+    "type": "single",
+    "label": "Kapan Kakak lulus atau selesai aktif di Paskibra 99?",
+    "column": "Periode lulus",
+    "options": [
+      "2000 atau sebelumnya",
+      "2001–2010",
+      "2011–2020",
+      "2021 atau setelahnya"
+    ]
+  },
+  {
+    "id": "q2",
+    "type": "single",
+    "label": "Bagaimana Kakak mengikuti kabar di grup WhatsApp besar alumni?",
+    "column": "Grup WhatsApp",
+    "options": [
+      "Saya rutin membaca grup",
+      "Saya di grup dan jarang membukanya",
+      "Saya belum bergabung di grup"
+    ]
+  },
+  {
+    "id": "q3",
+    "type": "single",
+    "label": "Sebelum hari ini, seberapa jauh Kakak mengenal YKAP 99?",
+    "column": "Mengenal yayasan",
+    "options": [
+      "Baru tahu hari ini",
+      "Pernah dengar namanya",
+      "Tahu tujuannya garis besar",
+      "Tahu program & pengurusnya",
+      "Pernah/sedang terlibat"
+    ]
+  },
+  {
+    "id": "q4",
+    "type": "single",
+    "label": "Pernahkah seseorang mengajak Kakak secara pribadi untuk ikut kegiatan yayasan?",
+    "column": "Ajakan pribadi",
+    "options": [
+      "Pernah & aku ikut",
+      "Pernah tapi belum ikut",
+      "Belum pernah"
+    ]
+  },
+  {
+    "id": "q5",
+    "type": "matrix",
+    "label": "Seberapa setuju Kakak dengan pernyataan berikut?",
+    "column": "Rasa kebersamaan",
+    "rows": [
+      "Saya bangga pernah menjadi bagian dari Paskibra 99.",
+      "Sampai hari ini, saya masih merasa bagian dari keluarga alumni.",
+      "Saya merasa yayasan ini milik alumni dari semua angkatan."
+    ]
+  },
+  {
+    "id": "q6",
+    "type": "multi",
+    "label": "Apa yang selama ini menyulitkan Kakak untuk ikut kegiatan yayasan?",
+    "column": "Hambatan",
+    "options": [
+      "Belum jelas yayasan mengerjakan apa",
+      "Belum pernah diajak/tak tahu cara ikut",
+      "Waktu terbatas",
+      "Domisili jauh",
+      "Terkesan lingkaran tertutup (“itu-itu saja”)",
+      "Sungkan karena senioritas/beda angkatan",
+      "Nuansa Paskibra (hierarki/formal) kurang nyaman",
+      "Khawatir hanya dimintai sumbangan",
+      "Belum yakin soal pengelolaan & transparansi dana",
+      "Tak melihat manfaat langsung untukku",
+      "Punya kenangan kurang menyenangkan dari masa Paskibra/kegiatan alumni",
+      "Kegiatannya kurang cocok dengan fase hidup/profesiku",
+      "Grup chat terlalu ramai, kabar penting tenggelam",
+      "Saat ini saya tidak mengalami hambatan",
+      "Lainnya"
+    ],
+    "max": 3,
+    "other": true,
+    "exclusive": "Saat ini saya tidak mengalami hambatan"
+  },
+  {
+    "id": "q7",
+    "type": "multi",
+    "label": "Apa yang akan membuat Kakak lebih tertarik untuk terlibat?",
+    "column": "Pendorong",
+    "options": [
+      "Ketemu teman lama dalam suasana santai",
+      "Peluang jejaring/karier/kolaborasi usaha",
+      "Berbagi ilmu ke adik-adik",
+      "Belajar hal baru (pelatihan/seminar)",
+      "Tugas jelas, singkat, ada batas waktu",
+      "Laporan kegiatan & dana yang terbuka",
+      "Solidaritas nyata saat alumni/keluarga kena musibah",
+      "Pengakuan (sertifikat/portofolio/apresiasi)",
+      "Diajak langsung oleh orang yang kukenal",
+      "Lainnya"
+    ],
+    "max": 3,
+    "other": true
+  },
+  {
+    "id": "q8",
+    "type": "scale",
+    "label": "Seberapa mungkin Kakak ikut kegiatan atau membantu yayasan dalam enam bulan ke depan?",
+    "column": "Minat 6 bulan (0–10)"
+  },
+  {
+    "id": "q9",
+    "type": "multi",
+    "label": "Bentuk keterlibatan apa yang terasa realistis untuk Kakak sekarang?",
+    "column": "Bentuk keterlibatan",
+    "options": [
+      "Hadir di acara",
+      "Relawan per kegiatan",
+      "Mentor/pembicara untuk adik-adik",
+      "Bantu promosi/jejaring/sponsor",
+      "Donasi sesekali",
+      "Iuran/donasi rutin kecil",
+      "Jadi pengurus",
+      "Belum bisa terlibat sekarang"
+    ],
+    "max": 8,
+    "exclusive": "Belum bisa terlibat sekarang"
+  },
+  {
+    "id": "q10",
+    "type": "single",
+    "label": "Berapa banyak waktu yang kira-kira bisa Kakak luangkan setiap bulan?",
+    "column": "Waktu per bulan",
+    "options": [
+      "0 jam",
+      "1–2 jam",
+      "3–5 jam",
+      "6–10 jam",
+      "Lebih dari 10 jam"
+    ]
+  },
+  {
+    "id": "q11",
+    "type": "single",
+    "label": "Menurut Kakak, berapa orang yang ideal untuk menjalankan kegiatan harian yayasan saat ini?",
+    "column": "Jumlah pelaksana harian",
+    "options": [
+      "1 orang",
+      "3 orang",
+      "5 orang",
+      "Lebih dari 5 orang",
+      "Belum tahu"
+    ],
+    "note": "Alasan Kakak (opsional)"
+  },
+  {
+    "id": "q12",
+    "type": "text",
+    "label": "Dari yang Kakak lihat, apa yang membuat sebagian alumni belum tertarik untuk ikut?",
+    "column": "Mengapa belum tertarik"
+  },
+  {
+    "id": "q13",
+    "type": "multi",
+    "label": "Apa yang sebaiknya kita prioritaskan untuk adik-adik Paskibra 99?",
+    "column": "Prioritas adik-adik",
+    "options": [
+      "Beasiswa & bantuan pendidikan",
+      "Pendampingan setelah SMA (jurusan/karier)",
+      "Pembekalan di luar baris-berbaris (public speaking dll.)",
+      "Dukungan kegiatan + belajar menyusun proposal sponsor",
+      "Kakak asuh/mentoring"
+    ],
+    "max": 2
+  },
+  {
+    "id": "q14",
+    "type": "multi",
+    "label": "Dukungan apa yang paling perlu tersedia untuk alumni?",
+    "column": "Prioritas alumni",
+    "options": [
+      "Pelatihan keterampilan",
+      "Mentoring & pendampingan karier",
+      "Info lowongan/proyek/kolaborasi usaha",
+      "Webinar/seminar/podcast alumni",
+      "Silaturahmi santai lintas angkatan",
+      "Solidaritas saat musibah",
+      "Forum/grup aktif untuk tanya-jawab & saling bantu"
+    ],
+    "max": 3
+  },
+  {
+    "id": "q15",
+    "type": "single",
+    "label": "Cara berkumpul seperti apa yang paling nyaman untuk Kakak?",
+    "column": "Format pertemuan",
+    "options": [
+      "Tatap muka santai (makan bareng/olahraga/outing)",
+      "Online (Zoom/webinar)",
+      "Grup chat",
+      "Campuran tatap muka + online"
+    ]
+  },
+  {
+    "id": "q16",
+    "type": "matrix",
+    "label": "Seberapa setuju Kakak dengan gagasan berikut?",
+    "column": "Gagasan alumni",
+    "rows": [
+      "Laporan kegiatan dan keuangan yayasan sebaiknya dibagikan berkala kepada alumni.",
+      "Saya lebih mudah membantu jika tugas dan batas waktunya jelas.",
+      "Pelaksana kegiatan yang bekerja rutin pantas mendapat honor dari dana yayasan.",
+      "Saya lebih nyaman berkumpul dalam suasana santai lintas angkatan.",
+      "Saya tertarik pada forum alumni untuk bertanya, berbagi info kerja, dan saling membantu."
+    ]
+  },
+  {
+    "id": "q17",
+    "type": "text",
+    "label": "Jika ada satu hal yang bisa diubah agar yayasan lebih berarti bagi Kakak, apa itu?",
+    "column": "Satu perubahan"
+  }
+]
+  </script>
+  <script>
+    "use strict";
+    const pertanyaan = JSON.parse(document.getElementById("skema-survei").textContent);
+    const skala = ["Sangat tidak setuju", "Tidak setuju", "Netral", "Setuju", "Sangat setuju"];
+    const inti = [
+      ["Kabar dari angkatan Kakak", ["q1","q2","q3","q4"]],
+      ["Rasa kebersamaan", ["q5"]],
+      ["Yang menghambat keterlibatan", ["q6"]],
+      ["Yang membuat Kakak ingin ikut", ["q7"]],
+      ["Peran dan waktu Kakak", ["q8","q9","q10"]],
+      ["Tim yang menjalankan kegiatan", ["q11"]]
+    ];
+    const tambahan = [
+      ["Prioritas untuk adik-adik dan alumni", ["q12","q13","q14"]],
+      ["Cara kita bergerak bersama", ["q15","q16","q17"]]
+    ];
+    const id = (nama) => document.getElementById(nama);
+    const langsung = typeof google !== "undefined" && Boolean(google.script && google.script.run);
+    const kunci = "ykap99.survei.2026.v1." + (langsung ? "aktif" : "contoh");
+    const form = id("isi");
+    const daftar = id("bidang");
+    const aksi = id("aksi");
+    let tahap = "inti", langkah = 0, jawaban = {}, sibuk = false, undianBuka = true;
+    function acakId() {
+      const bytes = crypto.getRandomValues(new Uint8Array(16));
+      return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+    }
+    let tanda = acakId();
+    try {
+      const draf = JSON.parse(sessionStorage.getItem(kunci));
+      if (draf && /^[a-f0-9]{32}$/.test(draf.tanda) && ["inti","pilihan","tambahan","kontak","selesai","contoh"].includes(draf.tahap)) {
+        tanda = draf.tanda;
+        tahap = draf.tahap;
+        langkah = Number.isInteger(draf.langkah) ? draf.langkah : 0;
+        jawaban = draf.jawaban || {};
+        undianBuka = draf.undianBuka !== false;
+      }
+    } catch (_) { /* Beberapa browser membatasi penyimpanan dalam bingkai. */ }
+    function simpanDraf() {
+      try { sessionStorage.setItem(kunci, JSON.stringify({tanda, tahap, langkah, jawaban, undianBuka})); } catch (_) {}
+    }
+    function elemen(tag, teks, kelas) {
+      const node = document.createElement(tag);
+      if (teks !== undefined) node.textContent = teks;
+      if (kelas) node.className = kelas;
+      return node;
+    }
+    function navigasi(ke, nomor = 0) {
+      tahap = ke; langkah = nomor;
+      simpanDraf(); gambar(true);
+    }
+    function simpanNilai(kode, nilai) { jawaban[kode] = nilai; simpanDraf(); }
+    function tombol(teks, kerja, sekunder = false) {
+      const b = elemen("button", teks, sekunder ? "sekunder" : "");
+      b.type = "button"; b.addEventListener("click", kerja); aksi.append(b); return b;
+    }
+    function judul(teks, sub, posisi) {
+      id("judul").textContent = teks;
+      id("petunjuk").textContent = sub;
+      id("posisi").textContent = posisi;
+    }
+    function kosongkanGalat() { id("galat").textContent = ""; }
+    function skalaPilih(opsi, nilai, saatUbah) {
+      const input = elemen("select");
+      input.add(new Option("Pilih jawaban", ""));
+      opsi.forEach(([v, teks]) => input.add(new Option(teks, String(v))));
+      input.value = nilai == null ? "" : String(nilai);
+      input.onchange = () => saatUbah(input.value);
+      return input;
+    }
+    function tulis(kode, teks, induk, batas) {
+      const label = elemen("label", teks, "sub");
+      const input = elemen("textarea");
+      input.maxLength = batas; input.rows = 3; input.value = jawaban[kode] || "";
+      input.oninput = () => simpanNilai(kode, input.value);
+      label.append(input); induk.append(label); return label;
+    }
+    function buatBidang(q) {
+      const fs = elemen("fieldset"); fs.id = "bidang-" + q.id; fs.tabIndex = -1;
+      fs.append(elemen("legend", q.id.slice(1) + ". " + q.label));
+      const nilai = jawaban[q.id];
+      if (q.type === "single" || q.type === "scale") {
+        const opsi = q.type === "scale" ? Array.from({length:11}, (_,n) => [n, n === 0 ? "0 · Sangat tidak mungkin" : n === 10 ? "10 · Sangat mungkin" : String(n)]) : q.options.map(o => [o,o]);
+        const pilih = skalaPilih(opsi, nilai, v => simpanNilai(q.id, v));
+        pilih.setAttribute("aria-label", q.label); fs.append(pilih);
+      } else if (q.type === "multi") {
+        fs.append(elemen("small", q.max < q.options.length ? "Pilih hingga " + q.max + " jawaban." : "Boleh memilih lebih dari satu."));
+        const baris = [];
+        let lainnya;
+        function cocokkan() {
+          const dipilih = Array.isArray(jawaban[q.id]) ? jawaban[q.id] : [];
+          for (const pilihan of baris) {
+            pilihan.checked = dipilih.includes(pilihan.value);
+            pilihan.disabled = !pilihan.checked && dipilih.length >= q.max && pilihan.value !== q.exclusive;
+          }
+          if (lainnya) lainnya.hidden = !dipilih.includes("Lainnya");
+        }
+        q.options.forEach(o => {
+          const label = elemen("label", undefined, "pilihan");
+          const input = elemen("input"); input.type = "checkbox"; input.name = q.id; input.value = o;
+          input.onchange = () => {
+            let pilihan = Array.isArray(jawaban[q.id]) ? jawaban[q.id].slice() : [];
+            if (input.checked && o === q.exclusive) pilihan = [o];
+            else if (input.checked) pilihan = pilihan.filter(v => v !== q.exclusive).concat(o);
+            else pilihan = pilihan.filter(v => v !== o);
+            simpanNilai(q.id, pilihan); cocokkan();
+          };
+          label.append(input, elemen("span",o)); fs.append(label); baris.push(input);
+        });
+        if (q.other) lainnya = tulis(q.id + "_lain", "Tuliskan pilihan lainnya", fs, 250);
+        cocokkan();
+      } else if (q.type === "matrix") {
+        q.rows.forEach((teks, i) => {
+          const label = elemen("label", teks, "sub");
+          const kode = q.id + "_" + (i + 1);
+          label.append(skalaPilih(skala.map((s,n) => [n + 1,(n + 1) + " · " + s]), jawaban[kode], v => simpanNilai(kode,v)));
+          fs.append(label);
+        });
+      } else if (q.type === "text") {
+        tulis(q.id, "Jawaban Kakak (maksimal 1.000 karakter)", fs, 1000);
+      }
+      if (q.note) tulis(q.id + "_alasan", q.note, fs, 500);
+      daftar.append(fs);
+    }
+    function cek(kode, wajib) {
+      const q = pertanyaan.find(p => p.id === kode);
+      if (q.type === "matrix") return !wajib || q.rows.every((_,i) => Boolean(jawaban[kode + "_" + (i+1)]));
+      const v = jawaban[kode];
+      if (q.type === "multi") {
+        if (wajib && (!Array.isArray(v) || !v.length)) return false;
+        return !(q.other && (v || []).includes("Lainnya") && !(jawaban[kode + "_lain"] || "").trim());
+      }
+      return !wajib || (v !== undefined && v !== null && String(v).trim() !== "");
+    }
+    function cekLangkah(kode, wajib) {
+      const salah = kode.find(k => !cek(k, wajib));
+      if (!salah) return true;
+      id("galat").textContent = "Mohon lengkapi pertanyaan " + salah.slice(1) + " sebelum melanjutkan.";
+      id("bidang-" + salah).focus(); return false;
+    }
+    function jawabanBagian(utama) {
+      const data = {};
+      Object.keys(jawaban).forEach(k => {
+        const cocok = /^q(\d+)(?:_|$)/.exec(k);
+        if (!cocok || (Number(cocok[1]) <= 11) !== utama) return;
+        if (k.endsWith("_lain") && !(jawaban[k.split("_")[0]] || []).includes("Lainnya")) return;
+        data[k] = jawaban[k];
+      });
+      return data;
+    }
+    function kunciForm(terkunci) {
+      sibuk = terkunci;
+      form.setAttribute("aria-busy", String(terkunci));
+      // inert menjaga pilihan yang sudah dinonaktifkan tetap demikian setelah pengiriman.
+      daftar.inert = terkunci; aksi.inert = terkunci;
+      aksi.querySelectorAll("button").forEach(b => {b.disabled = terkunci;});
+    }
+    function kirim(metode, data, setelah) {
+      if (sibuk) return;
+      if (!langsung) { id("galat").textContent = "Formulir pratinjau ini belum terhubung."; return; }
+      kosongkanGalat(); kunciForm(true); id("status").textContent = "Sedang menyimpan…";
+      let selesai = false;
+      const waktu = setTimeout(() => gagal(), 45000);
+      function akhir() {
+        if (selesai) return false;
+        selesai = true; clearTimeout(waktu); kunciForm(false); id("status").textContent = ""; return true;
+      }
+      function gagal() {
+        if (akhir()) id("galat").textContent = "Penyimpanan belum terkonfirmasi. Periksa koneksi, lalu coba kirim lagi dari tab ini.";
+      }
+      try {
+        const layanan = google.script.run.withFailureHandler(gagal).withSuccessHandler(res => {
+          if (!akhir()) return;
+          if (!res || res.saved !== true) {
+            if (res && res.closed) { undianBuka = false; navigasi("selesai"); }
+            id("galat").textContent = res && res.message || "Jawaban belum tersimpan. Coba lagi dari tab ini.";
+            return;
+          }
+          if (typeof res.drawOpen === "boolean") undianBuka = res.drawOpen;
+          setelah();
+        });
+        layanan[metode](data);
+      } catch (_) { gagal(); }
+    }
+    function lanjutUndian() {
+      jawaban = {};
+      navigasi(undianBuka ? "kontak" : "selesai");
+    }
+    function langkahSurvei() {
+      const utama = tahap === "inti";
+      const kelompok = utama ? inti : tambahan;
+      langkah = Math.max(0,Math.min(langkah, kelompok.length - 1));
+      const [teks, kode] = kelompok[langkah];
+      judul(teks, utama ? "Pilih jawaban yang paling dekat dengan pengalaman Kakak. Hindari nama dan kontak pribadi dalam isian bebas." : "Jawab bagian yang Kakak inginkan. Mohon hindari menuliskan nama, nomor, atau kontak pribadi.",
+        (utama ? "Pertanyaan inti" : "Pertanyaan tambahan · opsional") + " · Langkah " + (langkah + 1) + " dari " + kelompok.length);
+      const bar = id("kemajuan"); bar.hidden = false; bar.max = kelompok.length; bar.value = langkah + 1;
+      kode.forEach(k => buatBidang(pertanyaan.find(q => q.id === k)));
+      if (langkah > 0) tombol("Kembali", () => navigasi(tahap, langkah-1), true);
+      if (langkah === 0 && !utama && langsung) tombol("Kembali ke pilihan", () => navigasi("pilihan"), true);
+      const terakhir = langkah === kelompok.length - 1;
+      const teksAksi = !terakhir ? "Lanjut" : langsung ? (utama ? "Kirim jawaban inti" : "Kirim jawaban tambahan") : (utama ? "Lihat contoh pertanyaan tambahan" : "Akhiri pratinjau");
+      tombol(teksAksi, () => {
+        kosongkanGalat(); if (!cekLangkah(kode, utama)) return;
+        if (!terakhir) { navigasi(tahap, langkah+1); return; }
+        if (!langsung) { navigasi(utama ? "tambahan" : "contoh"); return; }
+        const data = jawabanBagian(utama);
+        if (!utama && !Object.values(data).some(v => Array.isArray(v) ? v.length : String(v).trim())) {
+          id("galat").textContent = "Isi setidaknya satu jawaban tambahan atau pilih Lewati bagian tambahan."; return;
+        }
+        kirim(utama ? "simpanInti" : "simpanTambahan", {id:tanda, answers:data}, () => {
+          if (utama) { jawaban = {}; navigasi("pilihan"); }
+          else lanjutUndian();
+        });
+      });
+      if (!utama && langsung) tombol("Lewati bagian tambahan", lanjutUndian, true);
+    }
+    function kotakKontak(nama, teks, jenis, batas, autocomplete) {
+      const label = elemen("label", teks, "label-kontak");
+      const input = elemen("input"); input.type = jenis; input.id = nama; input.maxLength = batas;
+      input.required = true; input.autocomplete = autocomplete; label.append(input); daftar.append(label);
+    }
+    function centang(nama, teks) {
+      const label = elemen("label",undefined,"pilihan");
+      const input = elemen("input"); input.type = "checkbox"; input.id = nama;
+      label.append(input,elemen("span",teks)); daftar.append(label);
+    }
+    function kontak() {
+      judul("Ikut undian GoPay?", "Empat alumni masing-masing mendapat Rp50.000. Satu kesempatan per orang. Panitia tidak ikut. Pemenang diverifikasi sebagai alumni saat pengundian pada 5 Desember 2026.", "Jawaban survei tersimpan · Undian opsional");
+      daftar.append(elemen("p","Nama, angkatan, dan WhatsApp khusus untuk undian disimpan terpisah tanpa nomor respons survei. Panitia menghapus daftar kontak undian 14 hari sesudah acara.","petunjuk"));
+      kotakKontak("nama","Nama Kakak","text",90,"name");
+      kotakKontak("angkatan","Angkatan / tahun lulus","text",30,"off");
+      kotakKontak("nomor","WhatsApp yang terhubung ke GoPay","tel",24,"tel");
+      centang("izin","Saya alumni Paskibra 99, bukan panitia undian, dan setuju dihubungi untuk verifikasi dan pemberian hadiah.");
+      centang("relawan","Saya juga bersedia dihubungi pengurus untuk membantu sebagai relawan atau mentor (opsional).");
+      tombol("Daftar undian", () => {
+        kosongkanGalat();
+        for (const n of ["nama","angkatan","nomor"]) {
+          if (!id(n).value.trim()) { id("galat").textContent = "Lengkapi nama, angkatan, dan WhatsApp untuk ikut undian."; id(n).focus(); return; }
+        }
+        if (!id("izin").checked) { id("galat").textContent = "Mohon centang persetujuan untuk mengikuti undian."; id("izin").focus(); return; }
+        kirim("simpanKontak", {nama:id("nama").value,angkatan:id("angkatan").value,wa:id("nomor").value,izin:true,relawan:id("relawan").checked}, () => {
+          navigasi("selesai"); id("status").textContent = "Pendaftaran undian untuk nomor ini sudah tercatat.";
+        });
+      });
+      tombol("Selesai tanpa ikut undian", () => navigasi("selesai"), true);
+    }
+    function gambar(fokus) {
+      daftar.replaceChildren(); aksi.replaceChildren(); kosongkanGalat(); id("status").textContent = "";
+      id("kemajuan").hidden = true; id("pratinjau").hidden = langsung;
+      if (tahap === "inti" || tahap === "tambahan") langkahSurvei();
+      else if (tahap === "pilihan") {
+        judul("Terima kasih, jawaban inti Kakak sudah tersimpan.", "Masih ada yang ingin Kakak sampaikan? Bagian tambahan akan membantu pengurus memahami prioritas Kakak.", "11 pertanyaan inti selesai");
+        tombol("Isi pertanyaan tambahan", () => navigasi("tambahan"));
+        tombol(undianBuka ? "Lewati dan lihat undian" : "Selesai", lanjutUndian, true);
+      } else if (tahap === "kontak") kontak();
+      else if (tahap === "contoh") {
+        judul("Pratinjau selesai", "Saat formulir diaktifkan, alumni akan menerima konfirmasi setelah jawaban masuk ke Google Sheets.", "Pratinjau panitia");
+        tombol("Ulangi pratinjau", () => {jawaban = {}; navigasi("inti");});
+      } else judul("Terima kasih sudah berbagi, Kak.", "Jawaban Kakak sudah tersimpan. Pengurus akan menggunakan masukan alumni untuk menentukan prioritas yayasan.", "Kuesioner selesai");
+      if (fokus) { id("judul").focus({preventScroll:true}); window.scrollTo(0,0); }
+    }
+    form.onsubmit = e => e.preventDefault();
+    gambar(false);
+  </script>
+</body>
+</html>
