@@ -3,452 +3,187 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kenali alumni Paskibra 99 lintas angkatan, bertukar pengalaman karier, dan ikut membuka kesempatan bagi generasi berikutnya bersama YKAP 99.">
-  <meta name="theme-color" content="#f7f4ef">
-  <title>Yayasan Keluarga Alumni Paskibra 99</title>
-
-  <!-- Ubah nilai warna di :root untuk menyesuaikan tampilan dengan identitas yayasan. -->
-  <style>
-    :root {
-  --paper: #F3F7FC;  /* Latar halaman biru pucat */
-  --white: #FFFFFF;  /* Latar kartu */
-  --ink: #151515;    /* Teks utama */
-  --muted: #42536A;  /* Teks sekunder */
-  --red: #2A55A3;    /* Biru tua dari logo */
-  --line: #D9E5F2;   /* Garis pemisah */
-}
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: Inter, system-ui, sans-serif;
-      line-height: 1.6;
-    }
-
-    h1, h2, h3, p { margin: 0; }
-    a { color: inherit; }
-    a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
-
-    .container {
-      width: min(100% - 2.5rem, 68rem);
-      margin-inline: auto;
-    }
-
-    .skip-link {
-      position: absolute;
-      inset: .75rem auto auto .75rem;
-      z-index: 1;
-      padding: .5rem 1rem;
-      background: var(--white);
-      transform: translateY(-200%);
-    }
-
-    .skip-link:focus { transform: none; }
-
-    .site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: .5rem 1.5rem;
-      flex-wrap: wrap;
-      padding-block: .9rem;
-    }
-
-    .wordmark {
-      color: var(--red);
-      font-weight: 850;
-      font-size: 1.25rem;
-      letter-spacing: -.04em;
-      text-decoration: none;
-    }
-
-    nav { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
-    nav a { padding-block: .5rem; font-size: .95rem; text-decoration: none; }
-    nav a:hover { text-decoration: underline; text-underline-offset: .25em; }
-
-    .hero {
-      padding: clamp(2.5rem, 7vw, 6rem) clamp(1.25rem, 6vw, 5rem);
-      background: var(--red) linear-gradient(120deg, transparent 76%, #ffffff12 76%);
-      color: var(--white);
-      border-radius: 1.25rem;
-    }
-
-    h1, h2 { letter-spacing: -.045em; line-height: 1.05; }
-    h1 { max-width: 16ch; font-size: clamp(2.15rem, 6.5vw, 5.25rem); }
-    h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
-    h3 { font-size: 1.14rem; line-height: 1.3; }
-
-    .hero p {
-      max-width: 45ch;
-      margin-top: 1.15rem;
-      color: #fff3ed;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-    }
-
-    .hero .hero-name {
-      margin: 0 0 .8rem;
-      font-size: .9rem;
-      font-weight: 700;
-    }
-
-    .button {
-      display: inline-block;
-      width: fit-content;
-      padding: .7rem 1.1rem;
-      border: 2px solid transparent;
-      border-radius: .5rem;
-      background: var(--red);
-      color: var(--white);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .button:hover { text-decoration: underline; text-underline-offset: .25em; }
-    .button:focus-visible { outline-color: var(--red); }
-
-    .hero .button {
-      margin-top: 1.5rem;
-      background: var(--white);
-      color: var(--red);
-    }
-
-    .hero .button:focus-visible { outline-color: var(--white); }
-
-    .section {
-      padding-block: clamp(2.5rem, 6vw, 4.5rem);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-      gap: 1.25rem 2rem;
-      align-items: start;
-    }
-
-    .section p { max-width: 60ch; color: var(--muted); }
-    .section p + p { margin-top: .85rem; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .9rem;
-      margin-top: 1.5rem;
-    }
-
-    .card {
-      padding: 1.2rem;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: .75rem;
-    }
-
-    .card h3 { margin-bottom: .5rem; }
-    .section .button { margin-top: 1rem; }
-
-    .site-footer {
-      padding-block: 1.35rem;
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
-    @media (max-width: 42rem) {
-      .split, .cards { grid-template-columns: 1fr; }
-      .hero { border-radius: .85rem; }
-    }
-
-.hero {
-  box-shadow: inset 0 -4px 0 #2481C6;
-}
-
-.card {
-  border-top: 3px solid #E34B0A;
-}
-    .section h2 + p, .info-sayembara p, .intro-survei p, .undangan p { margin-top: .85rem; }
-    .intro-survei, .info-sayembara { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 1.5rem 2.6rem; align-items: start; }
-    .catatan-survei, .jadwal-lomba, .undangan { border: 1px solid var(--line); border-radius: .85rem; padding: clamp(1rem, 3vw, 1.6rem); background: var(--white); }
-    .catatan-survei { border-left: .3rem solid #2481c6; }
-    .catatan-survei strong, .jadwal-lomba dt, .agenda dt { color: #204580; }
-    .section .akses-survei { margin: 1.6rem 0 .7rem; }
-    .section a:not(.button) { color: #244e96; font-weight: 650; text-underline-offset: .18em; }
-    .section .status-pasang { color: #694011; background: #fff3df; padding: .65rem 1rem; border-radius: .5rem; margin: .7rem 0; max-width: none; }
-    #formulir { display: block; width: 100%; height: 44rem; height: clamp(24rem, 80svh, 48rem); border: 1px solid var(--line); border-radius: 1rem; background: #fff; }
-    .tautan-karya { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem 1.25rem; margin-top: 1.15rem; }
-    .tautan-karya .button { margin: 0; }
-    .jadwal-lomba dl, .agenda { margin: 1rem 0 0; }
-    .jadwal-lomba dl > div + div, .agenda div + div { border-top: 1px solid var(--line); margin-top: .7rem; padding-top: .7rem; }
-    .jadwal-lomba dt, .agenda dt { font-weight: 750; }
-    .jadwal-lomba dd, .agenda dd { margin: .15rem 0 0; color: var(--muted); }
-    .agenda > div { display: grid; grid-template-columns: 4.1rem 1fr; gap: .5rem; }
-    .agenda dd { margin: 0; }
-    .galeri { margin-top: 2rem; border: 1px solid var(--line); background: var(--white); padding: clamp(.9rem, 3vw, 1.7rem); border-radius: 1rem; }
-    .kepala-galeri, .kontrol-galeri { display: flex; gap: .75rem 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-    .kepala-galeri h3 { font-size: clamp(1.35rem, 2.8vw, 1.8rem); }
-    .kepala-galeri p { margin-top: .35rem; }
-    .panggung { display: flex; justify-content: center; align-items: center; height: clamp(13rem, 45vw, 23rem); margin: 1rem 0; background: #f5f8fc; border: 1px solid var(--line); border-radius: .65rem; overflow: hidden; touch-action: pan-y pinch-zoom; }
-    .cuplikan { position: relative; overflow: hidden; width: min(94%, var(--lebar)); aspect-ratio: var(--rasio); }
-    .cuplikan img { position: absolute; max-width: none; height: auto; user-select: none; }
-    #logo-asli { width: 94%; height: 91%; object-fit: contain; }
-    .panggung:focus-visible, .kendali:focus-visible, #pilih-logo:focus-visible { outline: 3px solid #2464a5; outline-offset: 2px; }
-    .kendali, #pilih-logo { border: 1px solid #a5bad4; border-radius: .45rem; background: #fff; color: #204580; font: inherit; font-weight: 650; min-height: 2.75rem; padding: .4rem .8rem; cursor: pointer; }
-    .kendali:hover { background: #ebf2fc; }
-    .pilih-logo { display: flex; gap: .5rem; align-items: center; color: var(--muted); }
-    .section .keterangan-logo { max-width: none; margin-top: .8rem; text-align: center; font-size: .95rem; }
-    [hidden] { display: none !important; }
-    @media (max-width: 43rem) {
-      .intro-survei, .info-sayembara { grid-template-columns: 1fr; }
-      .kontrol-galeri { flex-wrap: nowrap; gap: .4rem; }
-      .kendali { padding-inline: .65rem; }
-      .kendali span { display: none; }
-      nav { column-gap: .85rem; }
-    }
-    @media (max-width: 23rem) { .container { width: calc(100% - 1.5rem); } }
-  </style>
+  <title>Alumni Paskibra 99 · Yayasan Keluarga Alumni Paskibra 99</title>
+  <meta name="description" content="Temui kembali teman satu barisan di Paskibra SMAN 99. Kenali kegiatan beasiswa yayasan, lihat 20 usulan logo, dan pilih tempat kumpul alumni 5 Desember 2026.">
+  <meta name="theme-color" content="#f4f8fc">
+  <link rel="icon" href="aset/logo-yayasan.webp">
+  <link rel="stylesheet" href="aset/beranda.css">
+  <script src="aset/beranda.js" defer></script>
 </head>
 <body id="beranda">
-  <a class="skip-link" href="#isi">Ke isi utama</a>
-  <header class="container site-header">
-    <a class="wordmark" href="#beranda" aria-label="YKAP 99, beranda">YKAP 99</a>
-    <nav aria-label="Navigasi utama">
-      <a href="#tentang">Cerita Kami</a>
-      <a href="#kegiatan">Manfaat</a>
-      <a href="#cita-cita">Cita-cita</a>
-      <a href="#kuesioner">Kuesioner</a>
-      <a href="#sayembara">Sayembara logo</a>
-      <a href="#kumpul">Kumpul alumni</a>
-    </nav>
+  <a class="lewati" href="#isi">Langsung ke isi</a>
+  <header class="bilah">
+    <div class="bungkus isi-bilah">
+      <a class="merek" href="#beranda" aria-label="Alumni Paskibra 99, beranda"><img src="aset/logo-yayasan.webp" alt="" width="44" height="44">Alumni Paskibra 99</a>
+      <nav class="nav-lebar" aria-label="Navigasi utama"><a href="#tentang">Cerita kami</a>
+        <a href="#kumpul">Kumpul alumni</a>
+        <a href="#sayembara">Sayembara logo</a>
+        <a href="#foto">Galeri foto</a>
+        <a href="#kuesioner">Kuesioner</a></nav>
+      <details class="nav-ringkas"><summary>Menu</summary><nav aria-label="Navigasi utama seluler"><a href="#tentang">Cerita kami</a>
+        <a href="#kumpul">Kumpul alumni</a>
+        <a href="#sayembara">Sayembara logo</a>
+        <a href="#foto">Galeri foto</a>
+        <a href="#kuesioner">Kuesioner</a></nav></details>
+    </div>
   </header>
 
-  <main class="container" id="isi" tabindex="-1">
-    <section class="hero" aria-labelledby="judul-utama">
-      <p class="hero-name">Yayasan Keluarga Alumni Paskibra 99</p>
-      <h1 id="judul-utama">Ada potensi besar yang bisa kita wujudkan bersama.</h1>
-      <p>Dan Kakak bisa menjadi bagian dari sejarah bagaimana potensi tersebut terwujud. Caranya? Mulai dari ber-networking/berjejaring dengan sesama alumni Paskibra SMAN 99 lintas angkatan, lalu ikut aktif dalam berbagai kegiatan yang berdampak positif bagi kita semua di masa depan.</p>
-      <a class="button" href="#kegiatan">Lihat manfaat untuk alumni</a>
+  <main id="isi" tabindex="-1">
+    <section class="hero bungkus" aria-labelledby="judul-utama">
+      <div class="suara">
+        <p class="nama-yayasan">Yayasan Keluarga Alumni Paskibra 99</p>
+        <h1 id="judul-utama">Masih ingat siapa yang dulu berdiri <em>di sebelah Kakak?</em></h1>
+        <p class="pembuka">Selepas SMA, jadwal kita tak lagi sama. Di sini Kakak bisa bertemu lagi dengan teman satu barisan, mendengar kabarnya, dan berkenalan dengan alumni yang dulu belum sempat satu lapangan.</p>
+        <p class="ajakan">Kita kumpul lagi Sabtu, 5 Desember 2026.</p>
+        <div class="aksi"><a class="tombol" href="#kuesioner">Konfirmasi hadir &amp; pilih tempat</a><a class="taut" href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20bergabung%20ke%20grup%20besar%20Alumni%20Paskibra%2099.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">Gabung grup alumni</a></div>
+      </div>
+      <figure class="foto-utama">
+        <img src="aset/foto/temu-paskibra.webp" alt="Alumni berkumpul di depan spanduk Eksistensi Paskibra Sembilan-Sembilan, beberapa mengenakan polo merah." width="1280" height="853" fetchpriority="high" decoding="async">
+        <figcaption><span>Temu alumni Paskibra 99</span><a href="#foto">Lihat album</a></figcaption>
+      </figure>
     </section>
 
-    <section class="section split" id="tentang">
-      <h2>Kekompakan yang kita teruskan</h2>
+    <div class="pita-cerita">
+      <section class="bungkus cerita" id="tentang" aria-labelledby="judul-cerita">
+        <div><p class="rubrik">Cerita yayasan</p><h2 id="judul-cerita">Dari lapangan latihan ke beasiswa.</h2></div>
+        <div><p>Dulu, Paskibra SMAN 99 dikenal kompak dan disegani sekolah lain. Di lapangan, kita belajar memperhatikan langkah teman di sebelah dan menjaga irama satu barisan.</p>
+        <p>Pada 2019, alumni mendirikan Yayasan Keluarga Alumni Paskibra 99. Semangat saling menjaga itu hidup lewat beasiswa yang terus disalurkan untuk adik-adik Paskibra 99 dan sesama alumni.</p></div>
+      </section>
+    </div>
+
+    <section class="bungkus bagian" id="kegiatan" aria-labelledby="judul-manfaat">
+      <p class="rubrik">Lintas angkatan</p>
+      <h2 id="judul-manfaat">Apa yang bisa Kakak temukan di sini?</h2>
+      <div class="manfaat">
+        <article><h3>Teman lama, cerita baru</h3><p>Mungkin Kakak masih hafal suara aba-abanya, tapi belum tahu apa kesibukannya sekarang. Saat kumpul, ada waktu untuk mengobrol lagi dan memperkenalkan teman dari angkatan lain.</p></article>
+        <article><h3>Teman untuk bertanya</h3><p>Mau pindah bidang kerja, mencari rekan proyek, atau mulai berjualan? Cerita dari alumni yang pernah menjalaninya bisa membantu Kakak menentukan langkah pertama.</p></article>
+        <article><h3>Peran yang cocok dengan waktu Kakak</h3><p>Sudah lama tak ikut kegiatan? Datang untuk menyapa pun boleh. Kalau ada waktu, Kakak bisa memotret acara, menemani adik angkatan yang datang sendiri, atau ikut menjadi pengurus.</p></article>
+      </div>
+      <aside class="visi" id="cita-cita"><h3>Ke mana kita ingin melangkah?</h3><p>Kita ingin lebih banyak adik angkatan mendapat kesempatan belajar. Alumni bisa menyumbang waktu sebagai mentor, berbagi keahlian, atau mengenalkan mitra. Dari beasiswa yang sudah berjalan, kita bercita-cita membangun pelatihan dan kegiatan sosial yang juga bermanfaat bagi masyarakat di Jakarta dan daerah lain di Indonesia, bersama jejaring alumni di dalam dan luar negeri.</p></aside>
+    </section>
+
+    <section class="bungkus bagian temu" id="kumpul" aria-labelledby="judul-kumpul">
       <div>
-        <p>Paskibra SMA 99 dikenal kompak dan disegani sekolah lain. Kita bangga pada prestasinya dan pada kebiasaan saling menjaga yang tumbuh dari latihan, lomba, dan waktu yang kita lewati bersama.</p>
-        <p>Para alumni membawa semangat itu saat mendirikan yayasan pada 2019. Berawal dari satu ekstrakurikuler di SMA, kini kita punya yayasan yang terus menyalurkan beasiswa bagi adik-adik Paskibra 99 dan sesama alumni.</p>
+        <p class="rubrik">Agenda alumni</p>
+        <h2 id="judul-kumpul">Kita duduk satu meja lagi.</h2>
+        <p class="teks">Sabtu, 5 Desember 2026, kita akan makan bersama, bertukar kabar, dan mengumumkan logo pilihan alumni. Lokasinya masih kita pilih bersama.</p>
+        <p class="teks">Kakak punya warung, kafe, atau ruang yang bisa dipakai? Tawarkan lewat kuesioner. Rekomendasi tempat lain juga kami tunggu.</p>
+        <div class="aksi"><a class="tombol" href="#kuesioner">Kabari kehadiran &amp; pilih lokasi</a><a class="taut" href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20bertanya%20tentang%20kumpul%20alumni%205%20Desember%202026.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">Tanya Fandi soal acara</a></div>
       </div>
-    </section>
-
-    <section class="section" id="kegiatan">
-      <h2>Manfaat untuk alumni</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>Jejaring lintas angkatan</h3>
-          <p>Banyak alumni sudah membangun karier dan usaha di berbagai bidang. Kenali mereka, bertukar informasi kerja atau proyek, dan temukan rekan untuk berkolaborasi.</p>
-        </article>
-        <article class="card">
-          <h3>Teman untuk belajar</h3>
-          <p>Sedang memilih jurusan, berganti bidang, atau merintis usaha? Kakak bisa berdiskusi dengan alumni yang pernah melewati tahap serupa dan belajar dari pengalaman mereka.</p>
-        </article>
-        <article class="card">
-          <h3>Pengalaman dan portofolio</h3>
-          <p>Dengan membantu kegiatan yayasan, Kakak bisa mencoba peran baru, melatih keterampilan, dan membangun portofolio sambil mendukung adik-adik dan sesama alumni.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section split" id="cita-cita">
-      <h2>Dampak yang bisa kita bangun bersama</h2>
-      <div>
-        <p>Kita bercita-cita membangun lembaga pendidikan dan pelatihan serta memperluas pelayanan sosial. Kita ingin kesempatan yang selama ini dibuka untuk adik-adik Paskibra 99 dan sesama alumni bisa dirasakan juga oleh masyarakat di Jakarta dan berbagai daerah di Indonesia.</p>
-        <p>Setiap angkatan bisa ikut mewujudkannya, misalnya dengan mendampingi adik-adik, berbagi keahlian, atau mempertemukan yayasan dengan mitra di Indonesia dan luar negeri.</p>
-      </div>
-    </section>
-
-    <section class="section" id="kuesioner" aria-labelledby="judul-survei">
-      <span id="kontak" aria-hidden="true"></span>
-      <div class="intro-survei">
-        <div>
-          <h2 id="judul-survei">Apa yang Kakak butuhkan dari keluarga alumni?</h2>
-          <p>Baru lulus, sudah lama tidak bertemu, atau rutin hadir di kegiatan? Kami ingin mendengar pengalaman Kakak. Jawaban ini akan membantu pengurus memilih kegiatan yang layak didahulukan dan cara melibatkan alumni dari setiap angkatan.</p>
-        </div>
-        <aside class="catatan-survei">
-          <strong>Jawaban tanpa nama</strong>
-          <p>Ada 11 pertanyaan inti dan 6 pertanyaan tambahan yang boleh dilewati. Jika ingin ikut undian GoPay, Kakak bisa mengisi kontak secara terpisah setelah survei.</p>
-        </aside>
-      </div>
-      <p class="akses-survei"><a id="tab-survei" href="Kuesioner.html" target="_blank" rel="noopener">Buka kuesioner di tab baru</a></p>
-      <p id="status-pasang" class="status-pasang" hidden></p>
-      <iframe id="formulir" src="about:blank" title="Isi kuesioner alumni Paskibra 99" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <noscript><p>Aktifkan JavaScript untuk mengisi kuesioner atau melihat galeri per karya.</p></noscript>
-    </section>
-
-    <section class="section" id="sayembara" aria-labelledby="judul-sayembara">
-      <div class="info-sayembara">
-        <div>
-          <h2 id="judul-sayembara">Logo baru untuk keluarga alumni</h2>
-          <p>Kalau semangat saling menjaga bisa digambar, seperti apa bentuknya? Alumni Paskibra 99 dari semua angkatan boleh mengirim karya orisinal beserta cerita singkat di balik bentuk dan warnanya. Pendaftaran gratis dan Kakak boleh mengirim lebih dari satu karya.</p>
-          <p>Hadiah sayembara <strong>Rp1.000.000</strong> dengan dukungan Vox Digital Kreatif. Kakak yang ingin menambah hadiah atau menjadi sponsor acara bisa menghubungi Fandi, angkatan 2010.</p>
-          <div class="tautan-karya" id="kirim-karya">
-            <a class="button" href="mailto:yayasan.alumni.paskibra.sma99@gmail.com?subject=Usulan%20logo%20YKAP%2099">Kirim karya lewat email</a>
-            <a href="https://wa.me/6281380414541" target="_blank" rel="noopener">Hubungi Fandi di WhatsApp</a>
-          </div>
-          <p id="status-karya" class="status-pasang" hidden>Periode pengiriman karya sudah berakhir.</p>
-        </div>
-        <div class="jadwal-lomba">
-          <h3>Jadwal sayembara</h3>
-          <dl>
-            <div><dt>9 November – 3 Desember 2026</dt><dd>Pengiriman karya sampai Kamis, 3 Desember, pukul 23.59 WIB.</dd></div>
-            <div><dt>Jumat, 4 Desember 2026</dt><dd>Pemungutan suara alumni.</dd></div>
-            <div><dt>Sabtu, 5 Desember 2026</dt><dd>Pengumuman pemenang dan peresmian logo saat kumpul alumni.</dd></div>
-          </dl>
-        </div>
-      </div>
-      <div class="galeri" id="galeri" aria-labelledby="judul-galeri">
-        <div class="kepala-galeri">
-          <div><h3 id="judul-galeri">Galeri usulan logo</h3><p>17 usulan per 17 November 2026. Lihat satu per satu atau buka poster untuk membandingkan seluruh karya.</p></div>
-          <a href="poster-sayembara.jpg" target="_blank" rel="noopener">Lihat poster lengkap</a>
-        </div>
-        <div id="penampil" class="penampil" hidden>
-          <div class="panggung" id="panggung" tabindex="0" aria-label="Galeri logo. Gunakan tombol panah kiri atau kanan untuk berpindah.">
-            <div class="cuplikan" id="cuplikan" role="img" aria-label="Usulan logo nomor 1">
-              <img id="lembar-poster" src="poster-sayembara.jpg" width="1364" height="2048" alt="" draggable="false">
-            </div>
-            <img id="logo-asli" alt="" hidden draggable="false">
-          </div>
-          <div class="kontrol-galeri">
-            <button class="kendali" id="sebelum" type="button" aria-label="Logo sebelumnya">← <span>Sebelumnya</span></button>
-            <label for="pilih-logo" class="pilih-logo">Lihat logo <select id="pilih-logo"></select></label>
-            <button class="kendali" id="sesudah" type="button" aria-label="Logo berikutnya"><span>Berikutnya</span> →</button>
-          </div>
-          <p id="keterangan-logo" class="keterangan-logo" aria-live="polite" aria-atomic="true"></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section split" id="kumpul" aria-labelledby="judul-kumpul">
-      <div>
-        <h2 id="judul-kumpul">Kumpul alumni lintas angkatan</h2>
-        <p>Temui lagi teman satu barisan, kenalan dengan kakak dan adik angkatan, dan saksikan logo pilihan alumni diresmikan bersama.</p>
-      </div>
-      <div class="undangan">
-        <h3>Sabtu, 5 Desember 2026</h3>
-        <p><strong>11.00–16.00 WIB</strong><br>Lokasi akan diumumkan panitia.</p>
-        <dl class="agenda">
+      <div class="agenda">
+        <p class="tanggal"><time datetime="2026-12-05">Sabtu, 5 Desember 2026</time></p>
+        <p>11.00–16.00 WIB · Lokasi menyusul</p>
+        <dl>
           <div><dt>11.00</dt><dd>Registrasi dan pembukaan</dd></div>
           <div><dt>12.00</dt><dd>Makan dan salat bersama</dd></div>
-          <div><dt>13.00</dt><dd>Pengumuman pemenang sayembara, peresmian logo, dan undian GoPay untuk peserta kuesioner</dd></div>
+          <div><dt>13.00</dt><dd>Pengumuman pemenang, peresmian logo, dan undian GoPay bagi peserta kuesioner</dd></div>
           <div><dt>15.00</dt><dd>Penutupan</dd></div>
         </dl>
-        <p>Ada pertanyaan soal lokasi atau kegiatan? <a href="https://wa.me/6281380414541" target="_blank" rel="noopener">Hubungi Fandi, angkatan 2010</a></p>
+      </div>
+    </section>
+
+    <section class="blok-logo" id="sayembara" aria-labelledby="judul-sayembara">
+      <div class="bungkus bagian">
+        <p class="rubrik">Sayembara logo</p>
+        <h2 id="judul-sayembara">20 usulan untuk logo baru kita.</h2>
+        <p class="teks">Lihat karya alumni satu per satu, lalu pilih logo favorit Kakak pada <strong>Jumat, 4 Desember 2026, di grup besar WhatsApp Alumni Paskibra 99.</strong></p>
+        <div class="dua-logo">
+          <div class="galeri-logo" id="galeri">
+            <div class="panggung" id="panggung" role="region" aria-label="Galeri 20 usulan logo. Gunakan panah kiri atau kanan untuk berpindah." tabindex="0">
+              <img id="karya" src="aset/karya/logo-01.webp" alt="Tulisan YKAP 99 berwarna biru dan merah dengan sapuan bendera di atasnya." width="366" height="176" loading="lazy" draggable="false">
+            </div>
+            <div class="kontrol" id="kontrol-logo" hidden>
+              <button type="button" id="sebelum" aria-label="Logo sebelumnya">Sebelumnya</button>
+              <label><span class="sr">Pilih nomor logo</span><select id="pilih-logo"><option value="1" data-src="aset/karya/logo-01.webp" data-alt="Tulisan YKAP 99 berwarna biru dan merah dengan sapuan bendera di atasnya.">Logo 1 / 20</option>
+              <option value="2" data-src="aset/karya/logo-02.webp" data-alt="Sosok-sosok berwarna biru, hijau, dan kuning yang membentuk lingkaran dengan angka 99.">Logo 2 / 20</option>
+              <option value="3" data-src="aset/karya/logo-03.webp" data-alt="Dua variasi warna lambang bersayap dengan garis-garis melengkung dan dua titik.">Logo 3 / 20</option>
+              <option value="4" data-src="aset/karya/logo-04.webp" data-alt="Dua variasi lambang merah dan biru berbentuk figur serta sayap melengkung.">Logo 4 / 20</option>
+              <option value="5" data-src="aset/karya/logo-05.webp" data-alt="Garis biru berbentuk hati dengan angka 99 emas dan bendera merah putih.">Logo 5 / 20</option>
+              <option value="6" data-src="aset/karya/logo-06.webp" data-alt="Susunan kotak merah di samping tulisan Paskibra Sembilan Sembilan berwarna biru.">Logo 6 / 20</option>
+              <option value="7" data-src="aset/karya/logo-07.webp" data-alt="Lambang simetris merah, putih, dan emas menyerupai sayap dengan angka 99.">Logo 7 / 20</option>
+              <option value="8" data-src="aset/karya/logo-08.webp" data-alt="Dua versi lingkaran hati warna-warni, salah satunya bertuliskan YKAP 99.">Logo 8 / 20</option>
+              <option value="9" data-src="aset/karya/logo-09.webp" data-alt="Figur merah, biru, hijau, dan kuning di samping tulisan YKAP 99.">Logo 9 / 20</option>
+              <option value="10" data-src="aset/karya/logo-10.webp" data-alt="Lambang bundar hitam putih bergambar Garuda dengan lingkaran tulisan di tepi.">Logo 10 / 20</option>
+              <option value="11" data-src="aset/karya/logo-11.webp" data-alt="Lambang Garuda hitam putih dalam bingkai ganda dan tulisan melingkar.">Logo 11 / 20</option>
+              <option value="12" data-src="aset/karya/logo-12.webp" data-alt="Lingkaran hitam putih dengan tulisan KAPASS di tengah dua garis mendatar.">Logo 12 / 20</option>
+              <option value="13" data-src="aset/karya/logo-13.webp" data-alt="Segel hitam putih bergambar Garuda dengan tulisan Yayasan Kapass di atasnya.">Logo 13 / 20</option>
+              <option value="14" data-src="aset/karya/logo-14.webp" data-alt="Susunan huruf berwarna biru dan merah dengan aksen menyerupai nyala dan angka 99.">Logo 14 / 20</option>
+              <option value="15" data-src="aset/karya/logo-15.webp" data-alt="Lambang bundar biru dan emas memuat gambar Garuda, bendera, dan angka 99.">Logo 15 / 20</option>
+              <option value="16" data-src="aset/karya/logo-16.webp" data-alt="Bentuk perisai emas dan biru berisi figur dan pita bertuliskan Paskibra 99.">Logo 16 / 20</option>
+              <option value="17" data-src="aset/karya/logo-17.webp" data-alt="Inisial YK dan AP berwarna biru disusun mengelilingi angka 99 dalam bidang jingga.">Logo 17 / 20</option>
+              <option value="18" data-src="aset/karya/logo-18.webp" data-alt="Lingkaran tulisan Yayasan Keluarga Alumni Paskibra 99 mengelilingi figur biru dan jingga serta bintang.">Logo 18 / 20</option>
+              <option value="19" data-src="aset/karya/logo-19.webp" data-alt="Nyala api jingga di atas susunan garis biru berbentuk kelopak dengan angka 99 dan tulisan YKAP 99.">Logo 19 / 20</option>
+              <option value="20" data-src="aset/karya/logo-20.webp" data-alt="Dua figur biru dan jingga membentuk hati berisi angka 99 dengan bintang emas di atasnya.">Logo 20 / 20</option></select></label>
+              <button type="button" id="sesudah" aria-label="Logo berikutnya">Berikutnya</button>
+            </div>
+            <p class="deskripsi-logo" id="deskripsi-logo" aria-live="polite">Tulisan YKAP 99 berwarna biru dan merah dengan sapuan bendera di atasnya.</p>
+            <a class="taut" href="aset/poster-sayembara-20.webp" target="_blank" rel="noopener">Buka poster lengkap 20 logo</a>
+          </div>
+          <div class="info-logo">
+            <h3>Jadwal sayembara</h3>
+            <dl class="jadwal">
+              <div><dt>Kamis, 3 Desember 2026</dt><dd>Pengiriman karya sampai pukul 23.59 WIB.</dd></div>
+              <div><dt>Jumat, 4 Desember 2026</dt><dd>Voting logo di grup besar alumni. Belum masuk grup? <a href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20bergabung%20ke%20grup%20besar%20Alumni%20Paskibra%2099.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">Minta undangan ke Fandi</a>.</dd></div>
+              <div><dt>Sabtu, 5 Desember 2026</dt><dd>Pengumuman pemenang dan peresmian logo saat kumpul alumni.</dd></div>
+            </dl>
+            <p><strong>Hadiah Rp1.000.000</strong> didukung oleh Vox Digital Kreatif. Untuk menambah hadiah atau mendukung acara, <a href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20bertanya%20tentang%20sponsorship%20sayembara%20logo%20atau%20kumpul%20alumni.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">bicarakan sponsorship dengan Fandi</a>.</p>
+            <div id="kirim-karya"><p>Terbuka untuk semua angkatan, gratis. Kakak boleh mengirim lebih dari satu karya orisinal beserta cerita di baliknya.</p><div class="aksi"><a class="taut" href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20mengirim%20karya%20untuk%20sayembara%20logo%20YKAP%2099.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">Kirim karya ke Fandi</a><a class="taut" href="mailto:yayasan.alumni.paskibra.sma99@gmail.com?subject=Usulan%20logo%20YKAP%2099">Kirim lewat email</a></div></div>
+            <p id="status-karya" hidden>Pengiriman karya sudah ditutup.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bungkus bagian" id="kuesioner" aria-labelledby="judul-kuesioner">
+      <span id="kontak"></span>
+      <p class="rubrik">Kuesioner alumni</p>
+      <div class="intro-form">
+        <div><h2 id="judul-kuesioner">Kakak bisa ikut kumpul?</h2>
+        <p class="teks">Pilih <strong>Kumpul 5 Desember</strong> untuk memberi kabar dan satu suara untuk lokasi. Sudah pernah mengisi survei yayasan? Kakak bisa langsung ke bagian kumpul.</p></div>
+        <div class="info-form"><h3>Ingin ikut menentukan kegiatan yayasan?</h3><p>Pilih <strong>Survei yayasan</strong>. Ada 11 pertanyaan inti tanpa nama dan 6 pertanyaan tambahan opsional. Kontak undian GoPay disimpan terpisah.</p></div>
+      </div>
+      <p class="akses-form"><a id="tab-survei" class="taut" href="https://script.google.com/macros/s/AKfycbwiRt_eaKrs2MAo6Pvnmhi-432KDgrj7Nc-SGXd-HO-XKONS_EGXS2fBBOLqLAIDEk/exec" target="_blank" rel="noopener">Buka kuesioner di tab baru</a></p>
+      <iframe id="formulir" title="Konfirmasi kumpul, voting lokasi, dan survei yayasan" data-url="https://script.google.com/macros/s/AKfycbwiRt_eaKrs2MAo6Pvnmhi-432KDgrj7Nc-SGXd-HO-XKONS_EGXS2fBBOLqLAIDEk/exec" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <noscript><p>Gunakan tautan di atas dan aktifkan JavaScript untuk mengisi kuesioner.</p></noscript>
+    </section>
+
+    <section class="album" id="foto" aria-labelledby="judul-foto">
+      <div class="bungkus bagian">
+        <p class="rubrik">Galeri foto kegiatan</p><h2 id="judul-foto">Cerita kita dalam foto.</h2>
+        <p class="teks">Dari lapangan sekolah sampai piknik keluarga, ini potret pertemuan kita dari waktu ke waktu. Ketuk foto untuk melihatnya lebih dekat.</p>
+        <div class="kisi-foto"><figure class="foto-mini"><a href="aset/foto/dukungan-pendidikan.webp" aria-label="Perbesar foto. Kolase penyerahan bantuan kepada pelajar serta ucapan terima kasih untuk Yayasan Keluarga Alumni Paskibra 99."><img src="aset/kecil/dukungan-pendidikan.webp" alt="Kolase penyerahan bantuan kepada pelajar serta ucapan terima kasih untuk Yayasan Keluarga Alumni Paskibra 99." loading="lazy" decoding="async" width="1440" height="1440"></a><figcaption>Dukungan pendidikan dari yayasan</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/piknik-keluarga.webp" aria-label="Perbesar foto. Alumni dan keluarga duduk di atas tikar sambil menikmati bekal bersama di bawah pepohonan."><img src="aset/kecil/piknik-keluarga.webp" alt="Alumni dan keluarga duduk di atas tikar sambil menikmati bekal bersama di bawah pepohonan." loading="lazy" decoding="async" width="1440" height="1055"></a><figcaption>Piknik bersama keluarga</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/teman-di-lapangan.webp" aria-label="Perbesar foto. Sekelompok alumni berbaju merah dan putih berpose di lapangan dekat tenda acara."><img src="aset/kecil/teman-di-lapangan.webp" alt="Sekelompok alumni berbaju merah dan putih berpose di lapangan dekat tenda acara." loading="lazy" decoding="async" width="1440" height="960"></a><figcaption>Berjumpa lagi di lapangan</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/kembali-ke-kelas.webp" aria-label="Perbesar foto. Pelajar dan alumni berdiri berjajar di ruang kelas, dengan logo yayasan di layar belakang."><img src="aset/kecil/kembali-ke-kelas.webp" alt="Pelajar dan alumni berdiri berjajar di ruang kelas, dengan logo yayasan di layar belakang." loading="lazy" decoding="async" width="1280" height="960"></a><figcaption>Bertemu adik angkatan di sekolah</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/kumpul-di-rumah-makan.webp" aria-label="Perbesar foto. Sekelompok alumni melambaikan tangan ke kamera dari ruang makan."><img src="aset/kecil/kumpul-di-rumah-makan.webp" alt="Sekelompok alumni melambaikan tangan ke kamera dari ruang makan." loading="lazy" decoding="async" width="945" height="949"></a><figcaption>Ramai-ramai di rumah makan</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/temu-paskibra.webp" aria-label="Perbesar foto. Alumni berkumpul di depan spanduk Eksistensi Paskibra Sembilan-Sembilan, beberapa mengenakan polo merah."><img src="aset/kecil/temu-paskibra.webp" alt="Alumni berkumpul di depan spanduk Eksistensi Paskibra Sembilan-Sembilan, beberapa mengenakan polo merah." loading="lazy" decoding="async" width="1280" height="853"></a><figcaption>Berkumpul di acara Paskibra 99</figcaption></figure></div>
+        <details class="album-lanjut" id="foto-lain"><summary><span class="saat-tutup">Lihat 11 foto lainnya</span><span class="saat-buka">Tutup foto lainnya</span></summary><div class="kisi-foto"><figure class="foto-mini"><a href="aset/foto/pertemuan-di-sekolah.webp" aria-label="Perbesar foto. Alumni dan pelajar berseragam berdiri di depan kelas sambil mengangkat kepalan tangan."><img src="aset/kecil/pertemuan-di-sekolah.webp" alt="Alumni dan pelajar berseragam berdiri di depan kelas sambil mengangkat kepalan tangan." loading="lazy" decoding="async" width="1440" height="959"></a><figcaption>Kegiatan bersama pelajar</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/merah-putih.webp" aria-label="Perbesar foto. Sekelompok peserta berbusana merah dan putih berfoto di depan tenda kegiatan."><img src="aset/kecil/merah-putih.webp" alt="Sekelompok peserta berbusana merah dan putih berfoto di depan tenda kegiatan." loading="lazy" decoding="async" width="1440" height="1274"></a><figcaption>Merah putih di tengah keramaian</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/yayasan-di-sekolah.webp" aria-label="Perbesar foto. Enam orang berpose di depan layar yang menampilkan logo yayasan di sebuah kelas."><img src="aset/kecil/yayasan-di-sekolah.webp" alt="Enam orang berpose di depan layar yang menampilkan logo yayasan di sebuah kelas." loading="lazy" decoding="async" width="1280" height="960"></a><figcaption>Kembali ke sekolah bersama yayasan</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/semangkuk-soto.webp" aria-label="Perbesar foto. Empat alumni berswafoto di meja makan kayu dengan mangkuk dan gelas di depannya."><img src="aset/kecil/semangkuk-soto.webp" alt="Empat alumni berswafoto di meja makan kayu dengan mangkuk dan gelas di depannya." loading="lazy" decoding="async" width="1440" height="1080"></a><figcaption>Makan bersama di satu meja</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/jalan-bersama.webp" aria-label="Perbesar foto. Empat alumni berdiri bersama di luar ruangan dengan latar tebing dan pepohonan."><img src="aset/kecil/jalan-bersama.webp" alt="Empat alumni berdiri bersama di luar ruangan dengan latar tebing dan pepohonan." loading="lazy" decoding="async" width="1440" height="810"></a><figcaption>Jalan bersama teman alumni</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/ngopi.webp" aria-label="Perbesar foto. Tiga alumni mengangkat gelas di meja panjang di sisi bangunan hijau."><img src="aset/kecil/ngopi.webp" alt="Tiga alumni mengangkat gelas di meja panjang di sisi bangunan hijau." loading="lazy" decoding="async" width="1280" height="898"></a><figcaption>Mengangkat gelas bersama</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/makan-berdua.webp" aria-label="Perbesar foto. Dua alumni duduk berdampingan di meja restoran, tersenyum ke arah kamera."><img src="aset/kecil/makan-berdua.webp" alt="Dua alumni duduk berdampingan di meja restoran, tersenyum ke arah kamera." loading="lazy" decoding="async" width="1440" height="1080"></a><figcaption>Satu meja, dua teman lama</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/temu-dua-alumni.webp" aria-label="Perbesar foto. Dua alumni berdiri berdampingan dengan ibu jari terangkat di depan dinding bergambar."><img src="aset/kecil/temu-dua-alumni.webp" alt="Dua alumni berdiri berdampingan dengan ibu jari terangkat di depan dinding bergambar." loading="lazy" decoding="async" width="1080" height="1440"></a><figcaption>Bertemu di sela kesibukan</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/lapangan-pose-bersama.webp" aria-label="Perbesar foto. Teman-teman berpose kembali di lapangan, beberapa membungkuk ke depan dan tersenyum."><img src="aset/kecil/lapangan-pose-bersama.webp" alt="Teman-teman berpose kembali di lapangan, beberapa membungkuk ke depan dan tersenyum." loading="lazy" decoding="async" width="1440" height="960"></a><figcaption>Satu lagi pose di lapangan</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/swafoto.webp" aria-label="Perbesar foto. Dua alumni berswafoto di dalam ruangan di samping sebuah laptop."><img src="aset/kecil/swafoto.webp" alt="Dua alumni berswafoto di dalam ruangan di samping sebuah laptop." loading="lazy" decoding="async" width="1440" height="1081"></a><figcaption>Swafoto saat bertemu</figcaption></figure>
+          <figure class="foto-mini"><a href="aset/foto/teman-satu-bangku.webp" aria-label="Perbesar foto. Tiga alumni duduk berdampingan, salah satunya memakai kaus bertuliskan XPASS."><img src="aset/kecil/teman-satu-bangku.webp" alt="Tiga alumni duduk berdampingan, salah satunya memakai kaus bertuliskan XPASS." loading="lazy" decoding="async" width="1440" height="1080"></a><figcaption>Tiga teman dalam satu bingkai</figcaption></figure></div></details>
       </div>
     </section>
   </main>
-
-  <footer class="container site-footer">
-    <p>Yayasan Keluarga Alumni Paskibra 99</p>
+  <footer class="kaki">
+    <div class="bungkus isi-kaki">
+      <div><p class="rubrik">Kontak alumni</p><h2>Belum masuk grup besar?</h2><p>Sapa <a href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20bergabung%20ke%20grup%20besar%20Alumni%20Paskibra%2099.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">Fandi Asap</a> dan minta undangan agar Kakak bisa ikut voting logo dan menerima kabar lokasi kumpul.</p>
+      <a class="tombol" href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20bergabung%20ke%20grup%20besar%20Alumni%20Paskibra%2099.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">Hubungi Fandi di WhatsApp</a></div>
+      <div class="kontak-kaki"><h3><a href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20bertanya%20tentang%20kegiatan%20Yayasan%20Keluarga%20Alumni%20Paskibra%2099.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">Fandi Asap · 0813-8041-4541</a></h3>
+      <ul><li>Paskibra SMAN 99 angkatan 2010</li><li>Paskibraka Jakarta Timur angkatan 2012</li><li>Paskibra Melbourne angkatan 2014</li></ul></div>
+    </div>
+    <div class="bungkus akhir">Yayasan Keluarga Alumni Paskibra 99</div>
   </footer>
-  <script>
-    // Tempel URL Web app publik dari Google Apps Script di antara tanda kutip.
-    const URL_KUESIONER = "https://script.google.com/macros/s/AKfycbwiRt_eaKrs2MAo6Pvnmhi-432KDgrj7Nc-SGXd-HO-XKONS_EGXS2fBBOLqLAIDEk/exec";
-
-    const frame = document.getElementById("formulir");
-    const tautan = document.getElementById("tab-survei");
-    const statusPasang = document.getElementById("status-pasang");
-    const alamat = URL_KUESIONER.trim();
-    const siap = /^https:\/\/script\.google\.com\/(?:macros\/s|a\/macros\/[a-z0-9.-]+\/s|a\/[a-z0-9.-]+\/macros\/s)\/[a-zA-Z0-9_-]+\/exec$/.test(alamat);
-    frame.src = siap ? alamat : "Kuesioner.html";
-    tautan.href = frame.getAttribute("src");
-    if (alamat && !siap) {
-      statusPasang.textContent = "Alamat kuesioner perlu diperbarui oleh panitia. Untuk sementara, pertanyaan dapat dilihat dalam pratinjau.";
-      statusPasang.hidden = false;
-    }
-
-    // Ukuran poster asli dalam piksel. Kotak berisi [x, y, lebar, tinggi].
-    // Jika tersedia file asli, tambahkan properti file pada entri karya tersebut.
-    const karya = [
-      { kotak: [72, 563, 392, 205], deskripsi: "Tulisan YKAP 99 biru dan merah dengan pita Merah Putih." },
-      { kotak: [487, 563, 391, 205], deskripsi: "Figur biru, hijau, dan kuning membentuk angka 99." },
-      { kotak: [902, 563, 391, 205], deskripsi: "Dua variasi lambang bersayap dengan figur berwarna biru." },
-      { kotak: [72, 792, 392, 205], deskripsi: "Dua variasi sayap merah dan figur biru dalam bentuk melingkar." },
-      { kotak: [487, 792, 391, 205], deskripsi: "Angka 99 emas dengan lengkung biru dan pita Merah Putih." },
-      { kotak: [902, 792, 391, 205], deskripsi: "Susunan kotak merah di sisi tulisan Paskibra Sembilan Sembilan." },
-      { kotak: [72, 1020, 392, 206], deskripsi: "Angka 99 emas di bawah dua sayap berwarna merah dan putih." },
-      { kotak: [487, 1020, 391, 206], deskripsi: "Dua versi lingkaran figur berwarna, salah satunya memuat tulisan YKAP 99." },
-      { kotak: [902, 1020, 391, 206], deskripsi: "Figur warna-warni di samping tulisan YKAP 99 berwarna hitam." },
-      { kotak: [72, 1249, 195, 202], deskripsi: "Lambang lingkaran hitam putih dengan burung bersayap di tengah." },
-      { kotak: [290, 1249, 196, 202], deskripsi: "Lambang hitam putih dengan burung di dalam dua lingkaran bertulisan." },
-      { kotak: [509, 1249, 196, 202], deskripsi: "Lingkaran hitam putih dengan tulisan KAPASS di tengah." },
-      { kotak: [727, 1249, 196, 202], deskripsi: "Burung bersayap dalam stempel bulat dengan tulisan di sekelilingnya." },
-      { kotak: [945, 1249, 348, 202], deskripsi: "Rangkaian huruf dan angka 99 berwarna biru, merah, dan jingga." },
-      { kotak: [419, 1473, 274, 232], deskripsi: "Emblem bundar biru dan emas dengan pita Merah Putih serta angka 99." },
-      { kotak: [718, 1473, 276, 232], deskripsi: "Perisai biru dan emas dengan bintang dan figur yang mengangkat tangan." },
-      { kotak: [1017, 1473, 276, 232], deskripsi: "Monogram YKAP biru dengan angka 99 pada lingkaran jingga." }
-    ];
-    const penampil = document.getElementById("penampil");
-    const panggung = document.getElementById("panggung");
-    const cuplikan = document.getElementById("cuplikan");
-    const poster = document.getElementById("lembar-poster");
-    const asli = document.getElementById("logo-asli");
-    const pilih = document.getElementById("pilih-logo");
-    const keterangan = document.getElementById("keterangan-logo");
-    let aktif = 0;
-    karya.forEach((item, i) => pilih.add(new Option((i + 1) + " / " + karya.length, String(i))));
-    function tampilkanLogo(index) {
-      aktif = (index + karya.length) % karya.length;
-      const item = karya[aktif];
-      const [x, y, lebar, tinggi] = item.kotak;
-      const label = "Logo " + (aktif + 1) + " dari " + karya.length + ". " + item.deskripsi;
-      cuplikan.setAttribute("aria-label", label);
-      cuplikan.style.setProperty("--rasio", lebar + " / " + tinggi);
-      // Tinggi maksimum mengikuti ruang panggung, termasuk saat layar diputar.
-      cuplikan.style.setProperty("--lebar", (panggung.clientHeight * .9 * lebar / tinggi) + "px");
-      poster.style.width = (1364 / lebar * 100) + "%";
-      poster.style.left = (-x / lebar * 100) + "%";
-      poster.style.top = (-y / tinggi * 100) + "%";
-      asli.hidden = true;
-      cuplikan.hidden = false;
-      if (item.file) {
-        const calon = new Image();
-        calon.onload = () => {
-          if (karya[aktif] !== item) return;
-          asli.src = item.file;
-          asli.alt = label;
-          asli.hidden = false;
-          cuplikan.hidden = true;
-        };
-        calon.src = item.file;
-      }
-      pilih.value = String(aktif);
-      keterangan.textContent = label;
-    }
-    penampil.hidden = false;
-    tampilkanLogo(0);
-    window.addEventListener("resize", () => tampilkanLogo(aktif));
-    document.getElementById("sebelum").onclick = () => tampilkanLogo(aktif - 1);
-    document.getElementById("sesudah").onclick = () => tampilkanLogo(aktif + 1);
-    pilih.onchange = () => tampilkanLogo(Number(pilih.value));
-    panggung.onkeydown = (e) => {
-      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-        e.preventDefault();
-        tampilkanLogo(aktif + (e.key === "ArrowLeft" ? -1 : 1));
-      }
-    };
-    let sentuhan;
-    panggung.addEventListener("touchstart", (e) => {
-      sentuhan = e.touches.length === 1 ? [e.touches[0].clientX, e.touches[0].clientY] : null;
-    }, {passive:true});
-    panggung.addEventListener("touchcancel", () => { sentuhan = null; }, {passive:true});
-    panggung.addEventListener("touchend", (e) => {
-      if (!sentuhan || e.touches.length) { sentuhan = null; return; }
-      const dx = e.changedTouches[0].clientX - sentuhan[0];
-      const dy = e.changedTouches[0].clientY - sentuhan[1];
-      sentuhan = null;
-      if (Math.abs(dx) > 48 && Math.abs(dx) > 1.5 * Math.abs(dy)) tampilkanLogo(aktif + (dx < 0 ? 1 : -1));
-    }, {passive:true});
-    if (Date.now() >= Date.parse("2026-12-04T00:00:00+07:00")) {
-      document.querySelector("#kirim-karya a.button").hidden = true;
-      document.getElementById("status-karya").hidden = false;
-    }
-  </script>
+  <dialog id="lihat-foto" aria-labelledby="nama-foto">
+    <div class="atas-dialog"><strong id="nomor-foto"></strong><button type="button" id="tutup-foto" autofocus>Tutup</button></div>
+    <img id="foto-besar" alt="">
+    <div class="bawah-dialog"><p id="nama-foto" aria-live="polite"></p><div class="kontrol"><button type="button" id="foto-mundur" aria-label="Foto sebelumnya">Sebelumnya</button><button type="button" id="foto-maju" aria-label="Foto berikutnya">Berikutnya</button></div></div>
+  </dialog>
 </body>
 </html>

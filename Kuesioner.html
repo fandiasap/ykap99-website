@@ -37,13 +37,105 @@
     small { color: #42566e; }
     [hidden] { display: none !important; }
     @media (max-width: 25rem) { .aksi { flex-direction: column; } .aksi button { width: 100%; } }
+    .pilih-bagian { display: flex; gap: .45rem; flex-wrap: wrap; padding-bottom: 1rem; margin-bottom: 1.1rem; border-bottom: 1px solid #d5e0ec; }
+    .pilih-bagian button { font-size: .94rem; background: white; color: #284d82; border-color: #a7bad3; }
+    .pilih-bagian button[aria-pressed=true] { background: #173d68; border-color: #173d68; color: white; }
+    .judul-bagian { font-size: clamp(1.45rem, 4vw, 2rem); line-height: 1.16; color: #173455; letter-spacing: -.03em; }
+    #isian-kumpul, .pertama { margin-top: 0; }
+    .opsi-hadir { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .opsi-hadir label { margin: .35rem 0 0; }
+    .pilih-tempat { margin: 1.15rem 0 .8rem; }
+    .pilih-tempat > label { font-weight: 720; color: #152f50; }
+    #tempat { max-width: 100%; white-space: normal; }
+    summary { cursor: pointer; font-weight: 650; color: #224c83; padding: .42rem 0; }
+    .usulan-tempat { border-block: 1px solid #d5e0ec; padding: .3rem 0; }
+    .usulan-tempat[open] { padding-bottom: .7rem; }
+    .tautan-peta:has(a[hidden]) { display: none; }
+    a { color: #214f90; text-underline-offset: .16em; }
+    .peta-lokasi ul { list-style: none; padding: 0; margin: .4rem 0; }
+    .peta-lokasi li + li { margin-top: .25rem; }
+    .peta-lokasi a { display: inline-block; padding: .24rem 0; }
+    #pesan-kumpul:not(:empty) { border-left: 3px solid #28568f; padding: .6rem .85rem; background: #edf4fc; }
+    #pesan-kumpul[data-galat=true] { border-color: #a44a0a; background: #fff2df; }
+    .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .info-grup { margin-top: 1.55rem; border-top: 1px solid #d5e0ec; padding-top: .8rem; color: #43596e; }
   </style>
 </head>
 <body>
   <main>
+    <h1 class="sr-only">Kuesioner Alumni Paskibra 99</h1>
     <p id="pratinjau" class="contoh" hidden>Pratinjau untuk panitia. Pertanyaan bisa dicoba di sini. Jawaban hanya bisa dikirim dari formulir yang sudah diaktifkan.</p>
+    <div class="pilih-bagian" role="group" aria-label="Bagian kuesioner">
+      <button type="button" id="buka-kumpul" aria-controls="panel-kumpul" aria-pressed="true">Kumpul 5 Desember</button>
+      <button type="button" id="buka-yayasan" aria-controls="panel-yayasan" aria-pressed="false">Survei yayasan</button>
+    </div>
+    <section id="panel-kumpul" aria-labelledby="judul-rsvp">
+      <h2 class="judul-bagian" id="judul-rsvp" tabindex="-1">Kakak bisa datang Sabtu, 5 Desember 2026?</h2>
+      <p class="petunjuk">Jawaban Kakak membantu panitia memperkirakan jumlah peserta dan memilih lokasi. Kakak boleh mengisi bagian ini saja.</p>
+      <form id="form-kumpul">
+        <fieldset id="isian-kumpul">
+          <legend class="sr-only">Konfirmasi kumpul alumni</legend>
+          <fieldset class="pertama">
+            <legend>Kehadiran Kakak</legend>
+            <div class="opsi-hadir">
+              <label class="pilihan"><input type="radio" name="hadir" value="Bisa hadir" required><span>Bisa hadir</span></label>
+              <label class="pilihan"><input type="radio" name="hadir" value="Belum pasti" required><span>Belum pasti</span></label>
+              <label class="pilihan"><input type="radio" name="hadir" value="Belum bisa hadir" required><span>Belum bisa hadir</span></label>
+            </div>
+          </fieldset>
+          <div class="pilih-tempat">
+            <label for="tempat">Di mana Kakak ingin kita berkumpul?</label>
+            <p class="petunjuk">Pilih satu tempat, atau pilih “Belum punya pilihan” jika masih ingin melihat hasilnya nanti.</p>
+            <select id="tempat" name="lokasi">
+              <option value="1">1. Nutrihub Jakarta Selatan</option>
+              <option value="2">2. Kampung Telaga LRT City Ciracas</option>
+              <option value="3A">3A. SSB Soto Boyolali, cabang Ciracas</option>
+              <option value="3B">3B. SSB Soto Boyolali, cabang Kelapa Dua</option>
+              <option value="3C">3C. SSB Soto Boyolali, cabang Cibubur</option>
+              <option value="4">4. Rumah Kak Kuncoro</option>
+              <option value="5">5. Kampung Kecil Ciracas</option>
+              <option value="6">6. SHSD Cibubur</option>
+              <option value="7">7. Gemintang Depok</option>
+              <option value="8">8. RM Saung Babeh Kite</option>
+              <option value="9">9. Sedabun Selera Dapur Bunda Depok</option>
+              <option value="10">10. Tempat makan, kafe, atau tempat kumpul milik alumni yang saya tawarkan</option>
+              <option value="11">11. Tempat lain yang saya rekomendasikan</option>
+              <option value="bebas" selected>Belum punya pilihan</option>
+            </select>
+            <p class="tautan-peta"><a id="peta-terpilih" target="_blank" rel="noopener" hidden></a></p>
+            <details class="peta-lokasi"><summary>Lihat 11 lokasi di Google Maps</summary>
+              <ul>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/67dUMCoU5XCzGTBu8">1. Nutrihub Jakarta Selatan</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/3QSFE3qn9amKjQpn7">2. Kampung Telaga LRT City Ciracas</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/qw8gUjbAHwSGEGpW8">3A. SSB Soto Boyolali, cabang Ciracas</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/bByzMCDLJzypN6Gv8">3B. SSB Soto Boyolali, cabang Kelapa Dua</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/E6MHJJ9JQkqYqtJM6">3C. SSB Soto Boyolali, cabang Cibubur</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/vK2pT1HvacDmahCH7">4. Rumah Kak Kuncoro</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/ttBC3jVbMBW6nfDt8">5. Kampung Kecil Ciracas</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/Z43AxbpScfoFj1pQ7">6. SHSD Cibubur</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/tC5WsfYjhaim6jju5">7. Gemintang Depok</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/6zV14V3YPbPtfGS29">8. RM Saung Babeh Kite</a></li>
+                <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/uPEtsvUCRP4qoodF7">9. Sedabun Selera Dapur Bunda Depok</a></li>
+              </ul>
+            </details>
+          </div>
+          <details class="usulan-tempat" id="kotak-usul">
+            <summary>Tawarkan tempat milik alumni atau beri rekomendasi</summary>
+            <label class="sub" for="tawaran"><strong>10. Punya usaha tempat makan, kafe, atau tempat kumpul yang bisa ditawarkan?</strong></label>
+            <textarea id="tawaran" name="tawaran" maxlength="350" rows="2" placeholder="Nama tempat, area, dan tautan peta jika ada"></textarea>
+            <label class="sub" for="usulan"><strong>11. Ada rekomendasi tempat lain?</strong></label>
+            <textarea id="usulan" name="usulan" maxlength="350" rows="2" placeholder="Nama tempat, area, dan alasan Kakak merekomendasikannya"></textarea>
+            <small>Kakak bisa memberi usulan sambil tetap memilih salah satu tempat di daftar.</small>
+          </details>
+        </fieldset>
+        <div class="aksi"><button type="submit" id="kirim-kumpul">Kirim konfirmasi dan pilihan tempat</button></div>
+        <p id="pesan-kumpul" role="status" aria-live="polite"></p>
+      </form>
+      <p class="info-grup"><strong>Ingin memilih logo?</strong> Voting logo diadakan Jumat, 4 Desember 2026 di grup besar Alumni Paskibra 99. <a href="https://wa.me/6281380414541?text=Halo%20Kak%20Fandi%2C%20saya%20ingin%20bergabung%20ke%20grup%20besar%20Alumni%20Paskibra%2099.%0A%0ANama%3A%20%5Bisi%20nama%5D%0ATahun%20angkatan%20Paskibra%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0ATahun%20lulus%20SMAN%2099%3A%20%5Bisi%20tahun%5D%0AProfesi%20saat%20ini%3A%20%5Bisi%20profesi%5D" target="_blank" rel="noopener">Minta undangan grup ke Fandi</a>.</p>
+    </section>
+    <section id="panel-yayasan" aria-labelledby="judul" hidden>
     <p id="posisi" class="meta"></p>
-    <h1 id="judul" tabindex="-1">Kuesioner alumni Paskibra 99</h1>
+    <h2 class="judul-bagian" id="judul" tabindex="-1">Kuesioner alumni Paskibra 99</h2>
     <p id="petunjuk" class="petunjuk"></p>
     <progress id="kemajuan" max="6" value="1" aria-label="Kemajuan di bagian ini" hidden></progress>
     <form id="isi" novalidate>
@@ -52,8 +144,30 @@
       <p id="status" role="status"></p>
       <div id="aksi" class="aksi"></div>
     </form>
+    </section>
     <noscript><p>Aktifkan JavaScript untuk mengisi formulir ini.</p></noscript>
   </main>
+  <script type="application/json" id="skema-kumpul">
+{
+  "hadir": ["Bisa hadir", "Belum pasti", "Belum bisa hadir"],
+  "lokasi": [
+    {"kode":"1","nama":"Nutrihub Jakarta Selatan","peta":"https://maps.app.goo.gl/67dUMCoU5XCzGTBu8"},
+    {"kode":"2","nama":"Kampung Telaga LRT City Ciracas","peta":"https://maps.app.goo.gl/3QSFE3qn9amKjQpn7"},
+    {"kode":"3A","nama":"SSB Soto Boyolali, cabang Ciracas","peta":"https://maps.app.goo.gl/qw8gUjbAHwSGEGpW8"},
+    {"kode":"3B","nama":"SSB Soto Boyolali, cabang Kelapa Dua","peta":"https://maps.app.goo.gl/bByzMCDLJzypN6Gv8"},
+    {"kode":"3C","nama":"SSB Soto Boyolali, cabang Cibubur","peta":"https://maps.app.goo.gl/E6MHJJ9JQkqYqtJM6"},
+    {"kode":"4","nama":"Rumah Kak Kuncoro","peta":"https://maps.app.goo.gl/vK2pT1HvacDmahCH7"},
+    {"kode":"5","nama":"Kampung Kecil Ciracas","peta":"https://maps.app.goo.gl/ttBC3jVbMBW6nfDt8"},
+    {"kode":"6","nama":"SHSD Cibubur","peta":"https://maps.app.goo.gl/Z43AxbpScfoFj1pQ7"},
+    {"kode":"7","nama":"Gemintang Depok","peta":"https://maps.app.goo.gl/tC5WsfYjhaim6jju5"},
+    {"kode":"8","nama":"RM Saung Babeh Kite","peta":"https://maps.app.goo.gl/6zV14V3YPbPtfGS29"},
+    {"kode":"9","nama":"Sedabun Selera Dapur Bunda Depok","peta":"https://maps.app.goo.gl/uPEtsvUCRP4qoodF7"},
+    {"kode":"10","nama":"Tempat makan, kafe, atau tempat kumpul milik alumni yang saya tawarkan"},
+    {"kode":"11","nama":"Tempat lain yang saya rekomendasikan"},
+    {"kode":"bebas","nama":"Belum punya pilihan"}
+  ]
+}
+  </script>
   <script type="application/json" id="skema-survei">
 [
   {
@@ -543,6 +657,119 @@
     }
     form.onsubmit = e => e.preventDefault();
     gambar(false);
+    (() => {
+      const opsi = JSON.parse(id("skema-kumpul").textContent);
+      const rsvp = id("form-kumpul");
+      const tempat = id("tempat");
+      const kirim = id("kirim-kumpul");
+      const pesan = id("pesan-kumpul");
+      const kunciKumpul = "ykap99.kumpul.2026-12-05." + (langsung ? "aktif" : "contoh");
+      let penyimpanan;
+      for (const jenis of ["localStorage", "sessionStorage"]) {
+        try {
+          const s = window[jenis];
+          s.setItem(kunciKumpul + ".uji", "1");
+          s.removeItem(kunciKumpul + ".uji");
+          penyimpanan = s;
+          break;
+        } catch (_) { /* Formulir tetap bisa dikirim dari tab ini. */ }
+      }
+      function bacaDraf() {
+        try { return JSON.parse(penyimpanan?.getItem(kunciKumpul)) || {}; }
+        catch (_) { return {}; }
+      }
+      const lama = bacaDraf();
+      const nomor = typeof lama.id === "string" && /^[a-f0-9]{32}$/.test(lama.id) ? lama.id : acakId();
+      let versi = Number.isSafeInteger(lama.versi) ? lama.versi : 0;
+      let pernahKirim = lama.terkirim === true;
+      function bacaIsian() {
+        return {id: nomor, hadir: rsvp.elements.hadir.value, lokasi: tempat.value,
+          tawaran: id("tawaran").value.trim(), usulan: id("usulan").value.trim()};
+      }
+      function ingat() {
+        try { penyimpanan?.setItem(kunciKumpul, JSON.stringify({...bacaIsian(), versi, terkirim: pernahKirim})); }
+        catch (_) { /* ID tetap tersedia untuk pengiriman ulang di tab yang sama. */ }
+      }
+      function beriPesan(teks, galat = false) {
+        pesan.textContent = teks;
+        pesan.dataset.galat = String(galat);
+      }
+      function sesuaikanLokasi() {
+        const pilihan = opsi.lokasi.find(item => item.kode === tempat.value);
+        const peta = id("peta-terpilih");
+        peta.hidden = !pilihan?.peta;
+        if (pilihan?.peta) {
+          peta.href = pilihan.peta;
+          peta.textContent = "Lihat " + pilihan.nama + " di Maps";
+        } else peta.removeAttribute("href");
+        id("tawaran").required = tempat.value === "10";
+        id("usulan").required = tempat.value === "11";
+        if (id("tawaran").required || id("usulan").required) id("kotak-usul").open = true;
+      }
+      function pilihBagian(kumpul, fokus) {
+        id("panel-kumpul").hidden = !kumpul;
+        id("panel-yayasan").hidden = kumpul;
+        id("buka-kumpul").setAttribute("aria-pressed", String(kumpul));
+        id("buka-yayasan").setAttribute("aria-pressed", String(!kumpul));
+        if (fokus) id(kumpul ? "judul-rsvp" : "judul").focus({preventScroll:true});
+      }
+      id("buka-kumpul").onclick = () => pilihBagian(true, true);
+      id("buka-yayasan").onclick = () => pilihBagian(false, true);
+
+      if (opsi.hadir.includes(lama.hadir)) rsvp.elements.hadir.value = lama.hadir;
+      if (opsi.lokasi.some(item => item.kode === lama.lokasi)) tempat.value = lama.lokasi;
+      for (const nama of ["tawaran", "usulan"]) {
+        if (typeof lama[nama] === "string") id(nama).value = lama[nama].slice(0, 350);
+      }
+      sesuaikanLokasi();
+      if (pernahKirim) beriPesan("Konfirmasi sebelumnya sudah tercatat. Kirim kembali jika pilihan Kakak berubah.");
+      kirim.textContent = !langsung ? "Coba konfirmasi (pratinjau)" : pernahKirim ? "Perbarui konfirmasi" : "Kirim konfirmasi dan pilihan tempat";
+      ingat();
+      rsvp.addEventListener("input", () => { sesuaikanLokasi(); ingat(); beriPesan(""); });
+      tempat.addEventListener("change", sesuaikanLokasi);
+      rsvp.addEventListener("invalid", event => {
+        if (event.target.matches("textarea")) id("kotak-usul").open = true;
+      }, true);
+      let sedangKirim = false;
+      rsvp.addEventListener("submit", event => {
+        event.preventDefault();
+        if (sedangKirim) return;
+        if (!langsung) {
+          beriPesan("Pratinjau selesai. Kirim dari kuesioner di situs yayasan untuk mencatat jawaban di Google Sheets.");
+          return;
+        }
+        const drafTerbaru = bacaDraf();
+        const terakhir = Number.isSafeInteger(drafTerbaru.versi) ? drafTerbaru.versi : 0;
+        versi = Math.max(Date.now(), versi + 1, terakhir + 1);
+        const data = {...bacaIsian(), versi};
+        ingat();
+        sedangKirim = true;
+        id("isian-kumpul").disabled = true;
+        kirim.disabled = true;
+        beriPesan("Sedang menyimpan kehadiran dan pilihan tempat…");
+        let menunggu = true;
+        const batas = setTimeout(() => selesai(null), 45000);
+        function selesai(hasil) {
+          if (!menunggu) return;
+          menunggu = false;
+          clearTimeout(batas);
+          sedangKirim = false;
+          id("isian-kumpul").disabled = false;
+          kirim.disabled = false;
+          if (hasil?.saved === true) {
+            pernahKirim = true;
+            ingat();
+            kirim.textContent = "Perbarui konfirmasi";
+            beriPesan("Terima kasih, Kak. Konfirmasi tersimpan. Kehadiran: " + data.hadir + ". Lokasi: " + tempat.selectedOptions[0].textContent + ".");
+          } else {
+            beriPesan(hasil?.message || "Penyimpanan belum terkonfirmasi. Isian masih ada. Coba kirim lagi dari tab ini.", true);
+          }
+        }
+        try { google.script.run.withSuccessHandler(selesai).withFailureHandler(() => selesai(null)).simpanKumpul(data); }
+        catch (_) { selesai(null); }
+      });
+    })();
+
   </script>
 </body>
 </html>
